@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://latorretours-tupiza.com/contact-us/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prompt - Mapa Leaflet La Torre Tours</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.7;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:800;color:#58a6ff;margin-bottom:10px}
+p.desc{margin-bottom:20px;color:#8b949e;font-size:14px}
+.note{background:#161b22;border-left:3px solid #f0883e;padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;font-size:13px;color:#e6edf3}
+.prompt-box{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:32px;margin-top:20px;position:relative}
+.copy-btn{position:sticky;top:12px;float:right;background:#238636;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;z-index:10}
+.copy-btn:hover{background:#2ea043}
+#prompt-text{white-space:pre-wrap;word-wrap:break-word;margin:0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8;color:#e6edf3}
+</style></head><body><div class="container">
+<h1>Prompt para Claude Code — Mapa Interactivo Leaflet.js</h1>
+<p class="desc">Prompt para implementar el mapa interactivo de la ruta del tour con Leaflet.js en tu proyecto existente.</p>
+<div class="note"><strong>Instrucción:</strong> Este prompt asume que ya tienes los archivos index.html, style.css y script.js. Claude Code integrará el mapa en la sección de ruta existente.</div>
+<div class="prompt-box"><button class="copy-btn" id="copyBtn">📋 Copiar Prompt</button><pre id="prompt-text">Necesito que implementes un mapa interactivo con Leaflet.js para la sección "Route" de mi página del tour "4 Day Trip from Tupiza to Uyuni" de La Torre Tours. El mapa debe replicar el estilo de mi mapa original (una imagen estática con rutas coloreadas por día y marcadores en cada parada) pero ahora como mapa interactivo con popups informativos.
+
+Mi proyecto ya tiene index.html, style.css y script.js creados. Necesito que integres el mapa en la sección de ruta existente.
+
+═══════════════════════════════════════════════════════════════
+1. DEPENDENCIAS — Añadir en el &lt;head&gt; del index.html
+═══════════════════════════════════════════════════════════════
+
+Añade estos dos recursos de Leaflet antes de tu script.js:
+
+&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /&gt;
+&lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""&gt;&lt;/script&gt;
+
+═══════════════════════════════════════════════════════════════
+2. HTML — Reemplazar la imagen estática del mapa en la sección #route
+═══════════════════════════════════════════════════════════════
+
+Reemplaza la imagen/div del mapa actual por este bloque:
+
+&lt;div class="route-map-container"&gt;
+  &lt;div class="route-map-legend"&gt;
+    &lt;div class="legend-item" data-day="1"&gt;
+      &lt;span class="legend-line" style="background:#3B82F6"&gt;&lt;/span&gt;
+      &lt;span&gt;Day 1: Tupiza → Quetena&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="legend-item" data-day="2"&gt;
+      &lt;span class="legend-line" style="background:#F97316"&gt;&lt;/span&gt;
+      &lt;span&gt;Day 2: Quetena → Huayllajara&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="legend-item" data-day="3"&gt;
+      &lt;span class="legend-line" style="background:#EAB308"&gt;&lt;/span&gt;
+      &lt;span&gt;Day 3: Huayllajara → Candelaria&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="legend-item" data-day="4"&gt;
+      &lt;span class="legend-line" style="background:#22C55E"&gt;&lt;/span&gt;
+      &lt;span&gt;Day 4: Candelaria → Uyuni&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id="route-map"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+═══════════════════════════════════════════════════════════════
+3. CSS — Añadir estos estilos en style.css
+═══════════════════════════════════════════════════════════════
+
+/* ── Route Map Container ── */
+.route-map-container {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border, #E9ECEF);
+}
+
+#route-map {
+  width: 100%;
+  height: 550px;
+  z-index: 1;
+}
+
+/* ── Legend ── */
+.route-map-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--border, #E9ECEF);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary, #1A1A2E);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.legend-item:hover {
+  opacity: 0.7;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* ── Custom Markers ── */
+.custom-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border: 2.5px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Inter', sans-serif;
+  transition: transform 0.2s ease;
+}
+
+.custom-marker:hover {
+  transform: scale(1.15);
+}
+
+.marker-day1 { background: #3B82F6; }
+.marker-day2 { background: #F97316; }
+.marker-day3 { background: #EAB308; }
+.marker-day4 { background: #22C55E; }
+.marker-start { width: 36px; height: 36px; background: #264653; font-size: 15px; border: 3px solid white; }
+.marker-end { width: 36px; height: 36px; background: #E76F51; font-size: 15px; border: 3px solid white; }
+.marker-overnight { width: 32px; height: 32px; background: #7C3AED; font-size: 14px; border: 2.5px solid white; }
+
+/* ── Popup Styles ── */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  min-width: 220px;
+}
+
+.leaflet-popup-tip {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.map-popup {
+  padding: 16px 18px;
+}
+
+.map-popup .popup-day {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.map-popup h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A2E;
+  margin-bottom: 6px;
+  font-family: 'Montserrat', 'Inter', sans-serif;
+}
+
+.map-popup .popup-desc {
+  font-size: 12.5px;
+  color: #6C757D;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.map-popup .popup-altitude {
+  font-size: 11px;
+  color: #ADB5BD;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #route-map { height: 400px; }
+  .route-map-legend { gap: 12px; padding: 12px 16px; }
+  .legend-item { font-size: 11px; }
+  .legend-line { width: 20px; }
+}
+
+@media print {
+  #route-map { height: 400px; }
+  .route-map-legend { background: #f8f8f8; }
+  .legend-item { cursor: default; }
+}
+
+═══════════════════════════════════════════════════════════════
+4. JAVASCRIPT — Añadir esta función en script.js y llamarla en DOMContentLoaded
+═══════════════════════════════════════════════════════════════
+
+// ============================================================
+// ROUTE MAP — Leaflet.js Interactive Map
+// ============================================================
+
+function initRouteMap() {
+  const mapEl = document.getElementById('route-map');
+  if (!mapEl) return;
+
+  // Initialize map
+  const map = L.map('route-map', {
+    center: [-21.5, -66.8],
+    zoom: 8,
+    scrollWheelZoom: false,
+    zoomControl: true
+  });
+
+  // Tile layer (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;',
+    maxZoom: 15,
+    minZoom: 7
+  }).addTo(map);
+
+  // ── Helpers ──
+  function markerIcon(cls, emoji) {
+    const size = cls.includes('start') || cls.includes('end') ? 36 : cls.includes('overnight') ? 32 : 30;
+    return L.divIcon({
+      className: '',
+      html: '&lt;div class="custom-marker ' + cls + '"&gt;' + (emoji || '📷') + '&lt;/div&gt;',
+      iconSize: [size, size],
+      iconAnchor: [size/2, size/2],
+      popupAnchor: [0, -(size/2 + 4)]
+    });
+  }
+
+  function popup(name, day, color, desc, alt) {
+    return '&lt;div class="map-popup"&gt;' +
+      '&lt;span class="popup-day" style="background:' + color + '"&gt;Day ' + day + '&lt;/span&gt;' +
+      '&lt;h4&gt;' + name + '&lt;/h4&gt;' +
+      '&lt;p class="popup-desc"&gt;' + desc + '&lt;/p&gt;' +
+      (alt ? '&lt;p class="popup-altitude"&gt;⛰️ Altitude: ' + alt + '&lt;/p&gt;' : '') +
+      '&lt;/div&gt;';
+  }
+
+  const C = { d1: '#3B82F6', d2: '#F97316', d3: '#EAB308', d4: '#22C55E' };
+  const routeStyle = { weight: 5, opacity: 0.85, smoothFactor: 1.5, lineCap: 'round', lineJoin: 'round' };
+
+  // Store all layers for toggle
+  const dayMarkers = { 1: [], 2: [], 3: [], 4: [] };
+  const dayRoutes = {};
+
+  function addMarker(coords, iconCls, emoji, name, day, color, desc, alt) {
+    const m = L.marker(coords, { icon: markerIcon(iconCls, emoji) })
+      .bindPopup(popup(name, day, color, desc, alt))
+      .addTo(map);
+    dayMarkers[day].push(m);
+    return m;
+  }
+
+  // ════════════════════════════════════════════
+  // DAY 1: TUPIZA → QUETENA (Blue)
+  // ════════════════════════════════════════════
+  const d1 = [
+    [-21.4430, -65.7189], // Tupiza
+    [-21.4650, -65.7600], // Quebrada de Palala
+    [-21.5100, -65.8400], // El Sillar
+    [-21.5900, -65.9700], // Ciudad del Encanto
+    [-21.6400, -66.0800], // San Pablo de Lípez
+    [-21.7500, -66.2200], // San Antonio de Lípez
+    [-22.1200, -66.7800], // Quetena
+  ];
+  dayRoutes[1] = L.polyline(d1, { ...routeStyle, color: C.d1 }).addTo(map);
+
+  addMarker(d1[0], 'marker-start', '🚐', 'Tupiza', 1, C.d1, 'Starting point of your adventure. A beautiful red canyon town in southern Bolivia.', '2,950m');
+  addMarker(d1[1], 'marker-day1', '📷', 'Quebrada de Palala', 1, C.d1, 'Spectacular jagged rock formations carved by millennia of wind and rain erosion.', '3,100m');
+  addMarker(d1[2], 'marker-day1', '📷', 'El Sillar', 1, C.d1, 'Towering dramatic rock spires creating an otherworldly landscape.', '3,400m');
+  addMarker(d1[3], 'marker-day1', '📷', 'Ciudad del Encanto', 1, C.d1, 'The "City of Enchantment" — impressive geological formations shaped by erosion.', '3,800m');
+  addMarker(d1[4], 'marker-day1', '📷', 'San Pablo de Lípez', 1, C.d1, 'Small Andean village, gateway to the remote Lípez region.', '4,250m');
+  addMarker(d1[5], 'marker-day1', '📷', 'San Antonio de Lípez', 1, C.d1, 'Historic colonial-era mining settlement.', '4,300m');
+  addMarker(d1[6], 'marker-overnight', '🛏️', 'Quetena', 1, C.d1, 'Overnight stop. Remote village under some of the clearest skies on Earth.', '4,200m');
+
+  // ════════════════════════════════════════════
+  // DAY 2: QUETENA → HUAYLLAJARA (Orange)
+  // ════════════════════════════════════════════
+  const d2 = [
+    [-22.1200, -66.7800], // Quetena
+    [-22.2500, -67.0500], // Laguna Kollpa
+    [-22.3500, -67.2800], // Salar de Chaiviri / Hot Springs
+    [-22.4800, -67.4900], // Laguna Verde
+    [-22.3700, -67.3500], // Desierto de Dalí
+    [-22.3300, -67.5300], // Sol de Mañana Geysers
+    [-22.2000, -67.7600], // Laguna Colorada
+    [-22.0600, -67.6500], // Huayllajara
+  ];
+  dayRoutes[2] = L.polyline(d2, { ...routeStyle, color: C.d2 }).addTo(map);
+
+  addMarker(d2[1], 'marker-day2', '📷', 'Laguna Kollpa', 2, C.d2, 'First lagoon of the day. Raw materials for soap production are extracted here.', '4,100m');
+  addMarker(d2[2], 'marker-day2', '♨️', 'Hot Springs (Polques)', 2, C.d2, 'Natural thermal springs — a rejuvenating soak surrounded by the altiplano!', '4,400m');
+  addMarker(d2[3], 'marker-day2', '📷', 'Laguna Verde', 2, C.d2, 'Emerald-green lagoon at the foot of Licancabur Volcano (5,868m). Color from arsenic and magnesium.', '4,250m');
+  addMarker(d2[4], 'marker-day2', '🎨', 'Desierto de Dalí', 2, C.d2, 'Surrealist landscape of vivid colors reminiscent of Salvador Dalí paintings. 110 km² of wonder.', '4,300m');
+  addMarker(d2[5], 'marker-day2', '🌋', 'Sol de Mañana Geysers', 2, C.d2, 'Bubbling mud pools and steam vents — raw volcanic power at extreme altitude.', '5,000m');
+  addMarker(d2[6], 'marker-day2', '🦩', 'Laguna Colorada', 2, C.d2, 'Blood-red lagoon where thousands of pink flamingos wade. One of Bolivia\'s most iconic sights.', '4,278m');
+  addMarker(d2[7], 'marker-overnight', '🛏️', 'Huayllajara', 2, C.d2, 'Overnight stop near Laguna Colorada. Basic accommodation in the altiplano.', '4,300m');
+
+  // ════════════════════════════════════════════
+  // DAY 3: HUAYLLAJARA → CANDELARIA (Yellow)
+  // ════════════════════════════════════════════
+  const d3 = [
+    [-22.0600, -67.6500], // Huayllajara
+    [-21.9200, -67.5600], // Árbol de Piedra / Siloli
+    [-21.8000, -67.4200], // Laguna Kara &amp; Kachi
+    [-21.6500, -67.2200], // Laguna Negra
+    [-21.5000, -67.0500], // Villamar area
+    [-21.3200, -66.9000], // Julaca / Alota
+    [-20.9200, -66.8500], // San Agustín
+    [-20.7500, -66.9500], // Candelaria
+  ];
+  dayRoutes[3] = L.polyline(d3, { ...routeStyle, color: C.d3 }).addTo(map);
+
+  addMarker(d3[1], 'marker-day3', '🌳', 'Árbol de Piedra', 3, C.d3, 'Famous "Stone Tree" — Bolivia\'s most photographed rock, sculpted by centuries of wind erosion.', '4,400m');
+  addMarker(d3[2], 'marker-day3', '📷', 'Laguna Kara &amp; Kachi', 3, C.d3, 'Two beautiful Andean lagoons creating perfect mirror reflections of the sky.', '4,200m');
+  addMarker(d3[3], 'marker-day3', '🦆', 'Laguna Negra', 3, C.d3, 'Dark waters home to rare black Andean ducks. Also known as Laguna Turquiri.', '4,100m');
+  addMarker(d3[5], 'marker-day3', '📷', 'Julaca &amp; Alota', 3, C.d3, 'Small traditional Andean towns on the northern route.', '3,800m');
+  addMarker(d3[7], 'marker-overnight', '🛏️', 'Candelaria', 3, C.d3, 'Overnight at the edge of the Salar de Uyuni. Sunset on the salt flat in the evening!', '3,650m');
+
+  // ════════════════════════════════════════════
+  // DAY 4: CANDELARIA → UYUNI (Green)
+  // ════════════════════════════════════════════
+  const d4 = [
+    [-20.7500, -66.9500], // Candelaria
+    [-20.5500, -67.1500], // Sunrise point on Salar
+    [-20.2400, -67.6300], // Isla Incahuasi
+    [-20.3200, -67.2500], // Ojos de Agua
+    [-20.3000, -66.9400], // Colchani
+    [-20.4600, -66.8300], // Cementerio de Trenes
+    [-20.4630, -66.8250], // Uyuni city
+  ];
+  dayRoutes[4] = L.polyline(d4, { ...routeStyle, color: C.d4 }).addTo(map);
+
+  addMarker(d4[1], 'marker-day4', '🌅', 'Sunrise on the Salar', 4, C.d4, 'Wake before dawn for one of nature\'s most spectacular shows — sunrise over 12,000 km² of white salt.', '3,650m');
+  addMarker(d4[2], 'marker-day4', '🌵', 'Isla Incahuasi', 4, C.d4, 'Rocky island covered in giant cacti, surrounded by an endless ocean of white. The Salar\'s most famous island.', '3,650m');
+  addMarker(d4[3], 'marker-day4', '💧', 'Ojos de Agua', 4, C.d4, 'Natural springs bubbling through the salt crust — the "eyes" of the salt flat.', '3,650m');
+  addMarker(d4[4], 'marker-day4', '🧂', 'Colchani', 4, C.d4, 'Village where salt is processed. Find handcrafted salt souvenirs and alpaca wool clothing.', '3,660m');
+  addMarker(d4[5], 'marker-day4', '🚂', 'Cementerio de Trenes', 4, C.d4, 'Haunting collection of rusting locomotives from Bolivia\'s mining golden age.', '3,660m');
+  addMarker(d4[6], 'marker-end', '🏁', 'Uyuni', 4, C.d4, 'End of the tour! Arrive around 1-2pm. Optional return to Tupiza (+3h drive).', '3,670m');
+
+  // ── Fit bounds to show full route ──
+  const allRoutes = L.featureGroup([dayRoutes[1], dayRoutes[2], dayRoutes[3], dayRoutes[4]]);
+  map.fitBounds(allRoutes.getBounds().pad(0.08));
+
+  // ── Scroll zoom: only enable on click, disable on mouseout ──
+  map.on('click', () =&gt; map.scrollWheelZoom.enable());
+  map.on('mouseout', () =&gt; map.scrollWheelZoom.disable());
+
+  // ── Legend toggle: click to show/hide each day's route + markers ──
+  document.querySelectorAll('.legend-item').forEach(item =&gt; {
+    item.addEventListener('click', function() {
+      const day = parseInt(this.dataset.day);
+      if (!day) return;
+
+      const route = dayRoutes[day];
+      const markers = dayMarkers[day];
+      const isVisible = map.hasLayer(route);
+
+      if (isVisible) {
+        map.removeLayer(route);
+        markers.forEach(m =&gt; map.removeLayer(m));
+        this.style.opacity = '0.35';
+        this.style.textDecoration = 'line-through';
+      } else {
+        route.addTo(map);
+        markers.forEach(m =&gt; m.addTo(map));
+        this.style.opacity = '1';
+        this.style.textDecoration = 'none';
+      }
+    });
+  });
+}
+
+// ── Inicializar ──
+// Añadir esta llamada dentro de tu DOMContentLoaded existente:
+// initRouteMap();
+
+// O si prefieres, al final de script.js:
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRouteMap);
+} else {
+  initRouteMap();
+}
+
+═══════════════════════════════════════════════════════════════
+5. NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+COORDENADAS: Son aproximadas para la ruta Tupiza-Uyuni en el suroeste de Bolivia (lat -20 a -23, lng -65 a -68). Si algún punto no coincide exactamente con la carretera real, ajusta los valores o añade puntos intermedios a los arrays (d1, d2, d3, d4) para que la línea siga mejor el camino real.
+
+SCROLL: scrollWheelZoom está deshabilitado por defecto para que el usuario no quede atrapado al hacer scroll por la página. Se activa solo al hacer clic dentro del mapa.
+
+LEYENDA INTERACTIVA: Al hacer clic en un día de la leyenda se ocultan/muestran su ruta y marcadores. Esto permite al usuario enfocarse en un día específico.
+
+EMOJIS EN MARCADORES: Cada parada tiene un emoji contextual (🦩 flamingos, 🌋 geysers, 🌵 cacti, 🚂 tren, etc.). Si en algún navegador no se renderizan bien, puedes reemplazarlos por texto (ej: "1", "2") o por SVG inline.
+
+RENDIMIENTO: Leaflet pesa ~40KB. Los tiles de OpenStreetMap son gratuitos y no requieren API key.
+
+TILES ALTERNATIVOS: Si quieres un estilo de mapa diferente al default de OpenStreetMap, puedes cambiar la URL del tileLayer. Opciones gratuitas:
+
+- Estilo terreno: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'
+- Estilo limpio: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+- Estilo oscuro: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+
+(Stadia Maps requiere registro gratuito para uso en producción)</pre></div>
+</div>
+<script>
+document.getElementById('copyBtn').addEventListener('click',function(){
+  const t=document.getElementById('prompt-text').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    document.getElementById('copyBtn').textContent='✅ Copiado!';
+    setTimeout(()=>document.getElementById('copyBtn').textContent='📋 Copiar Prompt',2500);
+  }).catch(()=>{
+    const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);
+    document.getElementById('copyBtn').textContent='✅ Copiado!';
+    setTimeout(()=>document.getElementById('copyBtn').textContent='📋 Copiar Prompt',2500);
+  });
+});
+</script></body></html>

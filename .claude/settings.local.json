@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check \"/Users/charliemacmini/Documents/Proyectos Claude Code/La Torre Tours/site2026/script.js\")"
+    ]
+  }
+}

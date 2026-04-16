@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis UX/UI — La Torre Tours</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    /* PORTADA */
+    .cover {
+      background: linear-gradient(135deg, #363E4A 0%, #1a2030 60%, #52BAB3 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 40px;
+      page-break-after: always;
+    }
+    .cover-badge {
+      background: rgba(82,186,179,0.25);
+      border: 1px solid #52BAB3;
+      color: #52BAB3;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+    .cover h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      max-width: 700px;
+    }
+    .cover h1 span { color: #52BAB3; }
+    .cover .subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 50px;
+      max-width: 500px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .cover-meta-item {
+      text-align: center;
+    }
+    .cover-meta-item .label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+    .cover-meta-item .value {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+    .cover-divider {
+      width: 80px;
+      height: 3px;
+      background: #EE7930;
+      margin: 40px auto;
+      border-radius: 2px;
+    }
+    .cover-url {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 40px;
+      font-family: monospace;
+    }
+
+    /* CONTENIDO GENERAL */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* RESUMEN EJECUTIVO */
+    .executive-summary {
+      background: linear-gradient(135deg, #f8fbff 0%, #edf7f6 100%);
+      border-left: 5px solid #52BAB3;
+      border-radius: 0 12px 12px 0;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+    .executive-summary h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #363E4A;
+      margin-bottom: 20px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .summary-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .summary-card .num {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .summary-card .cat {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+    .summary-card .dot { font-size: 20px; margin-bottom: 4px; }
+    .c-red .num { color: #E53E3E; }
+    .c-orange .num { color: #EE7930; }
+    .c-yellow .num { color: #D69E2E; }
+    .c-green .num { color: #38A169; }
+    .c-blue .num { color: #2191CE; }
+
+    /* SECCIONES */
+    .section {
+      margin-bottom: 60px;
+      page-break-inside: avoid;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge-red { background: #FFF5F5; color: #C53030; border: 1px solid #FC8181; }
+    .badge-orange { background: #FFFAF0; color: #C05621; border: 1px solid #F6AD55; }
+    .badge-yellow { background: #FFFFF0; color: #975A16; border: 1px solid #ECC94B; }
+    .badge-green { background: #F0FFF4; color: #276749; border: 1px solid #68D391; }
+    .badge-blue { background: #EBF8FF; color: #2B6CB0; border: 1px solid #63B3ED; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #1a1a2e;
+    }
+
+    /* TARJETAS DE MEJORA */
+    .issue-card {
+      background: #fff;
+      border: 1px solid #E8E8E8;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      page-break-inside: avoid;
+    }
+    .issue-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: #FAFAFA;
+      border-bottom: 1px solid #EFEFEF;
+    }
+    .issue-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .num-red { background: #FED7D7; color: #C53030; }
+    .num-orange { background: #FEEBC8; color: #C05621; }
+    .num-yellow { background: #FEFCBF; color: #975A16; }
+    .num-green { background: #C6F6D5; color: #276749; }
+    .num-blue { background: #BEE3F8; color: #2B6CB0; }
+
+    .issue-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a2e;
+      line-height: 1.4;
+    }
+    .issue-body {
+      padding: 20px 24px;
+    }
+    .issue-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      margin-top: 14px;
+    }
+    .issue-label:first-child { margin-top: 0; }
+    .label-problem { color: #E53E3E; }
+    .label-solution { color: #38A169; }
+    .issue-text {
+      font-size: 13.5px;
+      color: #4A5568;
+      line-height: 1.7;
+    }
+    .issue-rec {
+      background: #F0FFF4;
+      border-left: 3px solid #68D391;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #276749;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* TABLA RESUMEN FINAL */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .summary-table thead tr {
+      background: #363E4A;
+      color: white;
+    }
+    .summary-table th {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .summary-table td {
+      padding: 13px 20px;
+      font-size: 13px;
+      border-bottom: 1px solid #F0F0F0;
+      vertical-align: middle;
+    }
+    .summary-table tr:last-child td { border-bottom: none; }
+    .summary-table tr:nth-child(even) td { background: #FAFAFA; }
+    .summary-table .total-row td {
+      background: #EDF7F6 !important;
+      font-weight: 700;
+      color: #363E4A;
+      font-size: 14px;
+      border-top: 2px solid #52BAB3;
+    }
+
+    /* TOP 5 */
+    .top5 {
+      background: linear-gradient(135deg, #363E4A, #1a2030);
+      color: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+    .top5 h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .top5 .sub { color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 28px; }
+    .top5-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .top5-item:last-child { border-bottom: none; }
+    .top5-num {
+      width: 36px;
+      height: 36px;
+      background: #EE7930;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .top5-content .t { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+    .top5-content .d { color: rgba(255,255,255,0.55); font-size: 12.5px; }
+
+    /* SEPARADOR DE PÁGINAS */
+    .page-break { page-break-before: always; }
+
+    /* FOOTER DEL DOC */
+    .doc-footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid #eee;
+      color: #999;
+      font-size: 12px;
+      margin-top: 60px;
+    }
+
+    /* PRINT */
+    @media print {
+      body { font-size: 12px; }
+      .cover { min-height: 100vh; }
+      .content { padding: 40px 30px; }
+      .issue-card { box-shadow: none; border: 1px solid #ddd; }
+      @page { margin: 1cm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== PORTADA ===================== -->
+<div class="cover">
+  <div class="cover-badge">Informe de Análisis</div>
+  <h1>Análisis <span>UX / UI</span><br>La Torre Tours</h1>
+  <p class="subtitle">Página: 4-Day Trip from Tupiza to Uyuni</p>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Fecha de análisis</div>
+      <div class="value">Abril 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Total de mejoras</div>
+      <div class="value">31 identificadas</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Categorías</div>
+      <div class="value">5 áreas</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Preparado por</div>
+      <div class="value">Claude (Anthropic)</div>
+    </div>
+  </div>
+  <p class="cover-url">latorretours-tupiza.com/salar-de-uyuni/4-days-tupiza-uyuni/</p>
+</div>
+
+<!-- ===================== CONTENIDO ===================== -->
+<div class="content">
+
+  <!-- RESUMEN EJECUTIVO -->
+  <div class="executive-summary">
+    <h2>📊 Resumen Ejecutivo</h2>
+    <p style="color:#4A5568; font-size:14px;">Se identificaron <strong>31 oportunidades de mejora</strong> distribuidas en 5 categorías de prioridad. Las áreas críticas están relacionadas con la conversión (ausencia de CTAs en zonas clave), confianza del usuario (falta de testimonios, información desactualizada) y claridad de la propuesta de precios.</p>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="dot">🔴</div>
+        <div class="num c-red">4</div>
+        <div class="cat">Críticas</div>
+      </div>
+      <div class="summary-card">
+        <div class="dot">🟠</div>
+        <div class="num c-orange">7</div>
+        <div class="cat">Importantes</div>
+      </div>
+      <div class="summary-card">
+        <div class="dot">🟡</div>
+        <div class="num c-yellow">9</div>
+        <div class="cat">UX / UI</div>
+      </div>
+      <div class="summary-card">
+        <div class="dot">🟢</div>
+        <div class="num c-green">7</div>
+        <div class="cat">SEO / Contenido</div>
+      </div>
+      <div class="summary-card">
+        <div class="dot">🔵</div>
+        <div class="num c-blue">4</div>
+        <div class="cat">Técnicas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN 1: CRÍTICOS ===== -->
+  <div class="section">
+    <div class="section-header">
+      <span class="priority-badge badge-red">🔴 Prioridad Crítica</span>
+      <h2 class="section-title">Problemas Críticos — Alta Prioridad</h2>
+    </div>
+
+    <!-- 1 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-red">1</div>
+        <div class="issue-title">Falta de CTA visible en el Hero (Above the Fold)</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La imagen hero ocupa toda la pantalla inicial y el título aparece en la parte inferior de ella, pero no hay ningún botón de reserva o CTA en la zona visible sin hacer scroll. El usuario tiene que bajar muchísimo para encontrar el botón "I WANT TO BOOK THIS EXPERIENCE".</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar un botón CTA prominente directamente en el hero, sobre la imagen, con texto como "Book Now — From $297/person". Esto puede incrementar conversiones entre un 20–40%.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-red">2</div>
+        <div class="issue-title">Solo hay UN botón de reserva en toda la página</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El único enlace al sistema de reservas aparece al final de la sección de precios, muy abajo en la página. Un usuario interesado que lee el itinerario no tiene forma fácil de reservar desde esa sección.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar CTAs secundarios al final del itinerario ("¿Te convenció? Reserva ahora") y al final de la sección de descripción de cada día.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-red">3</div>
+        <div class="issue-title">Sección de precios confusa y sobrecargada</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La lógica de selección de precios (Shared/Private + número de personas + nivel Basic/Comfort/Deluxe) genera una matriz de 3×3 con muchas variantes que se muestran simultáneamente. El usuario debe hacer mucho trabajo cognitivo para encontrar su precio.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Implementar una calculadora de precio interactiva tipo wizard: primero Shared o Private, luego número de personas, y mostrar solo las 2–3 tarjetas relevantes. Añadir comparación side-by-side Basic vs Comfort vs Deluxe.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-red">4</div>
+        <div class="issue-title">Copyright en el footer desactualizado (dice "2023")</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El footer muestra "La Torre Tours 2023 | All rights reserved" pero estamos en 2026. Esto genera desconfianza y percepción de abandono o descuido del sitio.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Actualizar a 2026 o usar año dinámico con JavaScript: <code>new Date().getFullYear()</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN 2: IMPORTANTES ===== -->
+  <div class="section page-break">
+    <div class="section-header">
+      <span class="priority-badge badge-orange">🟠 Prioridad Alta</span>
+      <h2 class="section-title">Problemas Importantes — Prioridad Media-Alta</h2>
+    </div>
+
+    <!-- 5 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">5</div>
+        <div class="issue-title">El título H1 está en minúsculas en el HTML</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El heading principal (&lt;h1&gt;) dice "4 day trip from tupiza to uyuni" en minúsculas en el código HTML, aunque visualmente se muestra en mayúsculas por CSS. Esto perjudica el SEO y la accesibilidad para lectores de pantalla.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Capitalizar correctamente el H1 en el HTML: "4-Day Trip from Tupiza to Uyuni".
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">6</div>
+        <div class="issue-title">No hay reseñas ni testimonios reales de clientes</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La página menciona TripAdvisor y muestra sus certificados, pero no incluye ninguna cita, comentario ni reseña real de clientes anteriores. Esta es una oportunidad de conversión enorme desaprovechada.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar una sección "What our travelers say" con 3–5 reseñas reales (nombre, país, foto y rating de estrellas). Integrar widget de TripAdvisor si es posible.
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">7</div>
+        <div class="issue-title">Los trust-badges no tienen contexto clicable ni iconos profesionales</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La barra de 4 iconos debajo del hero usa emojis decorativos inconsistentes y el ícono de TripAdvisor no enlaza a la página real de la empresa en TripAdvisor, perdiendo oportunidad de validación social.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Convertir el ícono de TripAdvisor en enlace verificable. Reemplazar emojis por iconos SVG profesionales y consistentes en estilo.
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">8</div>
+        <div class="issue-title">El selector de días en el mapa no es accesible para daltónicos</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Los controles "DAY 1 / DAY 2 / DAY 3 / DAY 4" en el mapa usan solo colores para diferenciar los días (azul, amarillo, naranja, verde) sin ninguna leyenda textual explicativa. Quienes tengan daltonismo no pueden distinguirlos.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Añadir etiquetas de texto junto a cada ruta y asegurar que el contraste entre línea y fondo cumpla WCAG 2.1 AA.
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">9</div>
+        <div class="issue-title">El carrusel de imágenes tiene controles poco visibles y DOM duplicado</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Las flechas de navegación del carrusel son prácticamente invisibles, las imágenes no tienen captions descriptivos y los 8 grupos de imágenes se duplican en el DOM, lo que puede afectar el SEO y el rendimiento.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Flechas más grandes y visibles, indicadores de posición (bullets), descripción debajo de cada imagen, y corregir la duplicación de elementos en el HTML.
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">10</div>
+        <div class="issue-title">Ausencia total de política de cancelación y condiciones de reserva</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Ninguna parte de la página explica qué pasa si el cliente cancela, qué depósito se requiere, o cuánto tiempo de anticipación se necesita para reservar. Esto genera inseguridad en el cliente potencial.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar un bloque "Booking Policy" antes del CTA de reserva con depósito requerido, política de cancelación/reembolso y tiempo mínimo de reserva.
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-orange">11</div>
+        <div class="issue-title">Badge "All our staff is vaccinated" desactualizado (era relevante en pandemia)</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Uno de los trust-badges dice "All our staff is vaccinated in order to offer you a safe trip", información relevante en 2021 pero que en 2026 resulta anacrónica y puede generar perplejidad o desconfianza.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Reemplazar por información más relevante: "First Aid Certified Staff", "Safety equipment included" o "24/7 emergency support".
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN 3: UX/UI ===== -->
+  <div class="section page-break">
+    <div class="section-header">
+      <span class="priority-badge badge-yellow">🟡 Prioridad Media</span>
+      <h2 class="section-title">Mejoras de UX / UI</h2>
+    </div>
+
+    <!-- 12 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">12</div>
+        <div class="issue-title">No hay sticky header con CTA al hacer scroll</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El header se queda pegado al top (sticky), lo cual está bien, pero no incluye ningún botón de reserva. El usuario que ya quiere reservar después de leer el itinerario tiene que buscar activamente el botón de reserva.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar un botón "Book Now" en el header sticky que aparezca al bajar del hero, enlazando directamente al sistema de reservas.
+        </div>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">13</div>
+        <div class="issue-title">Tipografía del título hero difícil de leer</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El título sobre la imagen usa una fuente de tipo western/display que puede no ser legible en pantallas pequeñas o con ciertos fondos de imagen. No hay garantía de suficiente contraste.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar sombra de texto más fuerte (<code>text-shadow</code>) o un overlay semitransparente oscuro detrás del texto para garantizar legibilidad en cualquier zona de la imagen.
+        </div>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">14</div>
+        <div class="issue-title">Los acordeones del itinerario no tienen indicador visual de estado claro</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Cuando un día está abierto, visualmente no hay suficiente diferenciación respecto a los cerrados. Todos tienen el mismo color turquesa sin importar si están expandidos o no.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Cambiar el color de fondo o el ícono del acordeón activo (flecha hacia arriba, fondo más oscuro) para indicar claramente cuál está expandido.
+        </div>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">15</div>
+        <div class="issue-title">Solo DAY 1 viene expandido; los días 2, 3 y 4 están colapsados por defecto</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El usuario que llega a la página tiene que hacer clic 3 veces más para leer todo el itinerario. Esto añade fricción innecesaria y puede hacer que no lea información clave.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Mostrar todo el itinerario expandido por defecto, o al menos agregar un botón "Expand all / Collapse all".
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">16</div>
+        <div class="issue-title">La sección "EXCLUDINGS" tiene ortografía incorrecta en inglés</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">"EXCLUDINGS" no es una palabra del inglés. El título incorrecto afecta la percepción de profesionalismo de la empresa, especialmente ante viajeros angloparlantes.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Corregir a "What's NOT Included" o simplemente "Not Included" para mayor claridad y profesionalismo.
+        </div>
+      </div>
+    </div>
+
+    <!-- 17 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">17</div>
+        <div class="issue-title">"Need to Bring" es demasiado escueta y sin contexto de altitud</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La lista de lo que hay que llevar (warm clothes, comfortable shoes, etc.) es muy genérica y no explica por qué son necesarios (altitud de 5,000m, frío extremo, UV intenso). Esto puede causar que los turistas lleguen mal preparados.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Expandir cada ítem con nota contextual. Ej: "Warm clothes (temperatures drop below 0°C at night at 5,000m altitude)".
+        </div>
+      </div>
+    </div>
+
+    <!-- 18 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">18</div>
+        <div class="issue-title">No hay información sobre horas de conducción por día</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El itinerario describe los lugares pero no menciona cuántas horas se pasa viajando en el 4x4 cada día. Para muchos turistas, especialmente familias y personas mayores, esto es información crucial.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar una estimación de horas de traslado por día al final de cada sección del itinerario (ej: "Approx. 6–8 hours of driving").
+        </div>
+      </div>
+    </div>
+
+    <!-- 19 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">19</div>
+        <div class="issue-title">Footer duplicado en el DOM — dos elementos &lt;footer&gt;</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El DOM contiene dos elementos footer separados: uno con iconos de redes sociales y otro con el logo y tagline. Esto es un error de estructura HTML que puede confundir a bots de búsqueda y lectores de pantalla.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Unificar en un único footer con todas las secciones bien organizadas: logo + tagline + redes sociales + links legales + copyright.
+        </div>
+      </div>
+    </div>
+
+    <!-- 20 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-yellow">20</div>
+        <div class="issue-title">El botón de WhatsApp flotante no tiene label accesible</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El botón verde de WhatsApp que flota en la esquina inferior derecha no tiene texto alternativo ni aria-label. Los usuarios de lectores de pantalla (personas con discapacidad visual) no saben qué hace ese botón.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar <code>aria-label="Contact us on WhatsApp"</code> y considerar un texto "Chat with us" visible en hover.
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <!-- ===== SECCIÓN 4: SEO Y CONTENIDO ===== -->
+  <div class="section page-break">
+    <div class="section-header">
+      <span class="priority-badge badge-green">🟢 Prioridad Media-Baja</span>
+      <h2 class="section-title">Mejoras de Contenido y SEO</h2>
+    </div>
+
+    <!-- 21 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">21</div>
+        <div class="issue-title">Falta meta description y datos estructurados (Schema.org)</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La página probablemente carece de schema markup de tipo <code>TouristTrip</code> o <code>Product</code> que ayudaría a Google a mostrar rich snippets en los resultados de búsqueda (precio, rating, duración del tour).</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Implementar JSON-LD con schema <code>TouristTrip</code> incluyendo nombre, descripción, precio, duración, proveedor y reseñas agregadas. Agregar también Open Graph tags completos.
+        </div>
+      </div>
+    </div>
+
+    <!-- 22 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">22</div>
+        <div class="issue-title">Las imágenes no tienen textos alt descriptivos para SEO</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Los atributos <code>alt</code> de las imágenes del carrusel solo tienen el nombre del lugar (ej: "Geysers", "Laguna Colorada") sin contexto de tour ni destino. Esto es una oportunidad SEO perdida en búsquedas de imagen.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Usar alt text descriptivo y con keywords: "Geysers Sol de Mañana at 5,000m altitude — 4-Day Tupiza to Uyuni Tour, Bolivia, La Torre Tours".
+        </div>
+      </div>
+    </div>
+
+    <!-- 23 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">23</div>
+        <div class="issue-title">No hay sección de FAQ (Preguntas Frecuentes)</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Información dispersa en la página responde implícitamente a preguntas comunes (¿hay guía en inglés?, ¿qué incluye el precio?, ¿qué pasa en temporada de lluvias?), pero no hay una sección FAQ estructurada que mejore UX y SEO.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar una sección FAQ con 8–10 preguntas frecuentes. Con el markup <code>FAQPage</code> de Schema.org, las respuestas pueden aparecer directamente en los resultados de Google.
+        </div>
+      </div>
+    </div>
+
+    <!-- 24 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">24</div>
+        <div class="issue-title">No hay indicación del nivel de dificultad física del tour</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El tour incluye altitudes de 5,000m+, noches frías y días largos en 4x4. No hay ninguna indicación de aptitud física requerida ni advertencias sobre el mal de altura (Soroche), lo cual puede generar problemas y quejas post-viaje.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar una sección "Tour Difficulty" con iconos y descripción del nivel físico requerido, advertencias de altura y recomendaciones médicas básicas.
+        </div>
+      </div>
+    </div>
+
+    <!-- 25 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">25</div>
+        <div class="issue-title">El selector de idioma es inconsistente — aparece duplicado en la página</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Hay DOS selectores de idioma: uno en el header principal y otro flotante abajo-izquierda. Esto es redundante, visualmente confuso e interfiere con el contenido en móvil.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Mantener únicamente el selector del header y eliminar completamente el flotante de la esquina inferior izquierda.
+        </div>
+      </div>
+    </div>
+
+    <!-- 26 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">26</div>
+        <div class="issue-title">No hay breadcrumbs de navegación</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El usuario que llega desde Google a esta página no tiene forma visual de saber dónde está dentro de la estructura del sitio, ni puede navegar fácilmente a la sección "Salar de Uyuni" para ver otros tours disponibles.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar breadcrumbs visibles: <em>Home &gt; Salar de Uyuni &gt; 4-Day Trip from Tupiza to Uyuni</em>, idealmente con markup <code>BreadcrumbList</code> de Schema.org.
+        </div>
+      </div>
+    </div>
+
+    <!-- 27 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">27</div>
+        <div class="issue-title">No hay sección de "Tours Relacionados"</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Al final de la página no hay sugerencias de otros tours. El usuario que no esté convencido con este tour no tiene otra opción evidente y abandona el sitio completamente, perdiendo una venta potencial.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar una sección "You Might Also Like" con 2–3 tarjetas de otros tours con imagen, precio desde y botón CTA.
+        </div>
+      </div>
+    </div>
+
+    <!-- 28 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-green">28</div>
+        <div class="issue-title">Las notas de temporada de lluvias están enterradas en el texto del itinerario</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Las advertencias importantes sobre la temporada de lluvias (enero–abril) están al final de los textos de los días 3 y 4, dentro de acordeones colapsados. Un usuario puede reservar sin haberlas leído, generando expectativas incorrectas.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Destacar estas notas con un bloque visual especial (ícono de lluvia, fondo amarillo/ámbar) y agregar una sección "Important Seasonal Information" visible antes de la sección de precios.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN 5: TÉCNICAS ===== -->
+  <div class="section page-break">
+    <div class="section-header">
+      <span class="priority-badge badge-blue">🔵 Técnicas</span>
+      <h2 class="section-title">Mejoras Técnicas y de Rendimiento</h2>
+    </div>
+
+    <!-- 29 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-blue">29</div>
+        <div class="issue-title">El carrusel de imágenes duplica todos los grupos en el DOM</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">El árbol DOM muestra que los 8 grupos del carrusel aparecen duplicados (grupos 1–8 se repiten dos veces en el HTML). Esto infla innecesariamente el peso de la página y puede confundir a los crawlers de Google.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Revisar la implementación del plugin de carrusel (Elementor) y corregir la generación de elementos duplicados. Solo deben existir 8 grupos, no 16.
+        </div>
+      </div>
+    </div>
+
+    <!-- 30 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-blue">30</div>
+        <div class="issue-title">Implementación subóptima de Google Tag Manager</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">Se detecta el uso del iframe de noscript de GTM en el body, lo que sugiere que el snippet principal puede no estar en la posición óptima dentro del <code>&lt;head&gt;</code>, reduciendo la calidad del tracking de eventos.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Verificar que el snippet principal de GTM esté inmediatamente después de <code>&lt;head&gt;</code> y el iframe de noscript justo después de <code>&lt;body&gt;</code>, tal como indica la documentación oficial de Google.
+        </div>
+      </div>
+    </div>
+
+    <!-- 31 -->
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-number num-blue">31</div>
+        <div class="issue-title">Ausencia de formulario de contacto o chat integrado en la página</div>
+      </div>
+      <div class="issue-body">
+        <div class="issue-label label-problem">⚠ Problema</div>
+        <p class="issue-text">La única forma de contactar desde esta página es el botón de WhatsApp flotante. No hay formulario de consulta integrado ni chat, lo que significa que los usuarios con dudas antes de reservar no tienen una vía de contacto clara e inmediata.</p>
+        <div class="issue-rec">
+          ✅ <strong>Recomendación:</strong> Agregar un formulario de "Ask a Question" o "Request a Custom Quote" directamente en la página, antes del footer, para capturar leads que no estén listos para reservar de inmediato.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TABLA RESUMEN ===== -->
+  <div class="section page-break">
+    <div class="section-header">
+      <span class="priority-badge badge-blue">📊 Resumen</span>
+      <h2 class="section-title">Tabla de Prioridades</h2>
+    </div>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Prioridad</th>
+          <th>Categoría</th>
+          <th>N° de Mejoras</th>
+          <th>Impacto Principal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🔴 Crítica</td>
+          <td>Conversión y Confianza</td>
+          <td style="font-weight:700; color:#C53030;">4</td>
+          <td>Aumento directo en reservas</td>
+        </tr>
+        <tr>
+          <td>🟠 Alta</td>
+          <td>UX / Accesibilidad / Contenido</td>
+          <td style="font-weight:700; color:#C05621;">7</td>
+          <td>Credibilidad y experiencia de usuario</td>
+        </tr>
+        <tr>
+          <td>🟡 Media</td>
+          <td>UI y Copywriting</td>
+          <td style="font-weight:700; color:#975A16;">9</td>
+          <td>Claridad y navegación</td>
+        </tr>
+        <tr>
+          <td>🟢 Media-Baja</td>
+          <td>SEO y Contenido</td>
+          <td style="font-weight:700; color:#276749;">7</td>
+          <td>Tráfico orgánico y posicionamiento</td>
+        </tr>
+        <tr>
+          <td>🔵 Técnica</td>
+          <td>Código y Rendimiento</td>
+          <td style="font-weight:700; color:#2B6CB0;">4</td>
+          <td>Velocidad y calidad del tracking</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2"><strong>TOTAL</strong></td>
+          <td><strong>31</strong></td>
+          <td><strong>Mejora integral del sitio</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== TOP 5 ===== -->
+  <div class="top5">
+    <h2>🎯 Top 5 Mejoras de Mayor Impacto Inmediato</h2>
+    <p class="sub">Implementar estas 5 mejoras primero generará el mayor retorno en conversión y confianza</p>
+
+    <div class="top5-item">
+      <div class="top5-num">1</div>
+      <div class="top5-content">
+        <div class="t">Agregar CTA en el Hero (above the fold)</div>
+        <div class="d">Un botón "Book Now — From $297/person" visible sin hacer scroll puede incrementar las conversiones entre un 20–40%.</div>
+      </div>
+    </div>
+
+    <div class="top5-item">
+      <div class="top5-num">2</div>
+      <div class="top5-content">
+        <div class="t">Sección de Reviews y Testimonios de Clientes</div>
+        <div class="d">Agregar 3–5 reseñas reales con nombre, país y estrellas es la herramienta de conversión más poderosa en turismo.</div>
+      </div>
+    </div>
+
+    <div class="top5-item">
+      <div class="top5-num">3</div>
+      <div class="top5-content">
+        <div class="t">Simplificar el Selector de Precios (Pricing Wizard)</div>
+        <div class="d">Reducir la fricción cognitiva en la sección de precios con un flujo paso a paso elimina la principal barrera de compra.</div>
+      </div>
+    </div>
+
+    <div class="top5-item">
+      <div class="top5-num">4</div>
+      <div class="top5-content">
+        <div class="t">Corregir "EXCLUDINGS" y Copyright desactualizado</div>
+        <div class="d">Errores de texto visibles dañan la percepción de profesionalismo. Son correcciones de 5 minutos con gran impacto en credibilidad.</div>
+      </div>
+    </div>
+
+    <div class="top5-item">
+      <div class="top5-num">5</div>
+      <div class="top5-content">
+        <div class="t">Sección FAQ con Schema.org FAQPage</div>
+        <div class="d">Mejora la experiencia del usuario, reduce consultas de soporte y con el markup correcto puede aparecer directamente en Google.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER DEL DOCUMENTO -->
+  <div class="doc-footer">
+    <p>Análisis UX/UI preparado por <strong>Claude (Anthropic)</strong> — Abril 2026</p>
+    <p style="margin-top:6px;">La Torre Tours · latorretours-tupiza.com · Tupiza, Bolivia</p>
+  </div>
+
+</div><!-- fin .content -->
+</body>
+</html>

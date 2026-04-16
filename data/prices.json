@@ -1,0 +1,171 @@
+{
+  "shared": {
+    "intro": "A shared tour is the best option if you are traveling alone or want to meet other travelers. We group you with other adventurers, so you don't need to worry about filling the vehicle.",
+    "bookingUrl": "https://book.latorretours-tupiza.com/4d-s",
+    "plans": [
+      {
+        "name": "Basic",
+        "price": 1297,
+        "note": "Max 5 people per car",
+        "featured": false,
+        "badge": null,
+        "features": [
+          { "included": true,  "upgrade": false, "text": "Transportation in a 4x4" },
+          { "included": true,  "upgrade": false, "text": "Oxygen for emergencies" },
+          { "included": true,  "upgrade": false, "text": "Spanish-speaking driver-guide & cook" },
+          { "included": true,  "upgrade": false, "text": "All meals included" },
+          { "included": true,  "upgrade": false, "text": "3 nights in basic accommodations" },
+          { "included": true,  "upgrade": false, "text": "Sleeping bags" },
+          { "included": true,  "upgrade": false, "text": "5-bed dorm with shared bathroom" },
+          { "included": false, "upgrade": false, "text": "Hot shower (extra when available)" }
+        ]
+      },
+      {
+        "name": "Comfort",
+        "price": 397,
+        "note": "Max 5 people per car",
+        "featured": true,
+        "badge": "Most Booked",
+        "features": [
+          { "included": true,  "upgrade": false, "text": "Transportation in a 4x4" },
+          { "included": true,  "upgrade": false, "text": "Oxygen for emergencies" },
+          { "included": true,  "upgrade": false, "text": "Spanish-speaking driver-guide & cook" },
+          { "included": true,  "upgrade": false, "text": "All meals included" },
+          { "included": true,  "upgrade": false, "text": "3 nights in basic accommodations" },
+          { "included": true,  "upgrade": false, "text": "Sleeping bags" },
+          { "included": true,  "upgrade": true,  "text": "Private room (twin/double) — *$50 single supplement" },
+          { "included": true,  "upgrade": true,  "text": "Hot shower in the room" },
+          { "included": true,  "upgrade": true,  "text": "Help buying bus tickets to Tupiza" },
+          { "included": true,  "upgrade": true,  "text": "Pick up from your accommodation" }
+        ]
+      }
+    ]
+  },
+
+  "private": {
+    "intro": "A private tour is the best option if you want to travel with more comfort and flexibility, without following standard schedules for stops and photos.",
+    "bookingUrl": "https://book.latorretours-tupiza.com/4d-p",
+    "baseFeatures": [
+      { "included": true, "upgrade": false, "text": "Toyota Land Cruiser 4x4" },
+      { "included": true, "upgrade": false, "text": "Guaranteed Departure" },
+      { "included": true, "upgrade": false, "text": "Oxygen for emergencies" },
+      { "included": true, "upgrade": false, "text": "Spanish-speaking guide & cook" },
+      { "included": true, "upgrade": false, "text": "All meals included" },
+      { "included": true, "upgrade": false, "text": "Sleeping bags" },
+      { "included": true, "upgrade": false, "text": "Bus tickets help & pick up" }
+    ],
+    "groups": [
+      {
+        "size": 2,
+        "plans": [
+          {
+            "name": "Basic",
+            "price": 700,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true,  "upgrade": false, "text": "Twin/double, shared bathroom" },
+              { "included": false, "upgrade": false, "text": "Hot shower (extra)" }
+            ]
+          },
+          {
+            "name": "Comfort",
+            "price": 800,
+            "featured": true,
+            "badge": "Popular",
+            "features": [
+              { "included": true, "upgrade": true, "text": "Private room + private bathroom" },
+              { "included": true, "upgrade": true, "text": "Hot shower in the room" }
+            ]
+          },
+          {
+            "name": "Deluxe",
+            "price": 1450,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true, "upgrade": true, "text": "1 Night Mallku Cueva Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Tayka Desierto Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Palacio de Sal / Luna Salada" },
+              { "included": true, "upgrade": true, "text": "Private room + hot shower" }
+            ]
+          }
+        ]
+      },
+      {
+        "size": 3,
+        "plans": [
+          {
+            "name": "Basic",
+            "price": 500,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true,  "upgrade": false, "text": "Twin/triple, shared bathroom" },
+              { "included": false, "upgrade": false, "text": "Hot shower (extra)" }
+            ]
+          },
+          {
+            "name": "Comfort",
+            "price": 600,
+            "featured": true,
+            "badge": "Popular",
+            "features": [
+              { "included": true, "upgrade": true, "text": "Private room + private bathroom" },
+              { "included": true, "upgrade": true, "text": "Hot shower in the room" }
+            ]
+          },
+          {
+            "name": "Deluxe",
+            "price": 1150,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true, "upgrade": true, "text": "1 Night Mallku Cueva Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Tayka Desierto Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Palacio de Sal / Luna Salada" },
+              { "included": true, "upgrade": true, "text": "Private room + hot shower" }
+            ]
+          }
+        ]
+      },
+      {
+        "size": 4,
+        "plans": [
+          {
+            "name": "Basic",
+            "price": 400,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true,  "upgrade": false, "text": "Quadruple room, shared bathroom" },
+              { "included": false, "upgrade": false, "text": "Hot shower (extra)" }
+            ]
+          },
+          {
+            "name": "Comfort",
+            "price": 500,
+            "featured": true,
+            "badge": "Popular",
+            "features": [
+              { "included": true, "upgrade": true, "text": "Private room + private bathroom" },
+              { "included": true, "upgrade": true, "text": "Hot shower in the room" }
+            ]
+          },
+          {
+            "name": "Deluxe",
+            "price": 1100,
+            "featured": false,
+            "badge": null,
+            "features": [
+              { "included": true, "upgrade": true, "text": "1 Night Mallku Cueva Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Tayka Desierto Hotel" },
+              { "included": true, "upgrade": true, "text": "1 Night Palacio de Sal / Luna Salada" },
+              { "included": true, "upgrade": true, "text": "Private room + hot shower" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

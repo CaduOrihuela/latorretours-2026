@@ -32,6 +32,10 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
@@ -344,8 +348,30 @@
           <span><i class="fas fa-flag-checkered" aria-hidden="true"></i> Arrival in Uyuni: <strong>1:00pm – 2:00pm</strong></span>
         </div>
 
+        <div class="route-map-container">
+          <div class="route-map-legend">
+            <div class="legend-item" data-day="1">
+              <span class="legend-line" style="background:#3B82F6"></span>
+              <span>Day 1: Tupiza → Quetena</span>
+            </div>
+            <div class="legend-item" data-day="2">
+              <span class="legend-line" style="background:#F97316"></span>
+              <span>Day 2: Quetena → Huayllajara</span>
+            </div>
+            <div class="legend-item" data-day="3">
+              <span class="legend-line" style="background:#EAB308"></span>
+              <span>Day 3: Huayllajara → Candelaria</span>
+            </div>
+            <div class="legend-item" data-day="4">
+              <span class="legend-line" style="background:#22C55E"></span>
+              <span>Day 4: Candelaria → Uyuni</span>
+            </div>
+          </div>
+          <div id="route-map"></div>
+        </div>
+
         <div class="route-grid">
-          <div class="route-day-card" style="--day-color: #E76F51">
+          <div class="route-day-card" style="--day-color: #3B82F6">
             <div class="route-day-number">01</div>
             <div class="route-day-info">
               <h3>Tupiza → Quetena</h3>
@@ -353,7 +379,7 @@
               <div class="route-day-alt"><i class="fas fa-mountain" aria-hidden="true"></i> Max altitude: 4,250m</div>
             </div>
           </div>
-          <div class="route-day-card" style="--day-color: #2A9D8F">
+          <div class="route-day-card" style="--day-color: #F97316">
             <div class="route-day-number">02</div>
             <div class="route-day-info">
               <h3>Quetena → Huayllajara</h3>
@@ -361,7 +387,7 @@
               <div class="route-day-alt"><i class="fas fa-mountain" aria-hidden="true"></i> Max altitude: 5,000m</div>
             </div>
           </div>
-          <div class="route-day-card" style="--day-color: #264653">
+          <div class="route-day-card" style="--day-color: #EAB308">
             <div class="route-day-number">03</div>
             <div class="route-day-info">
               <h3>Siloli Desert → Candelaria</h3>
@@ -369,7 +395,7 @@
               <div class="route-day-alt"><i class="fas fa-mountain" aria-hidden="true"></i> Max altitude: 4,500m</div>
             </div>
           </div>
-          <div class="route-day-card" style="--day-color: #FFB703">
+          <div class="route-day-card" style="--day-color: #22C55E">
             <div class="route-day-number">04</div>
             <div class="route-day-info">
               <h3>Salt Flat → Uyuni</h3>

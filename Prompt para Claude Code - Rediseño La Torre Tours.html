@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://latorretours-tupiza.com/salar-de-uyuni/4-days-tupiza-uyuni/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prompt para Claude Code - Rediseño La Torre Tours</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.7;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:800;color:#58a6ff;margin-bottom:10px}
+h2{font-size:20px;font-weight:700;color:#f0883e;margin-top:32px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #21262d}
+h3{font-size:16px;font-weight:600;color:#7ee787;margin-top:20px;margin-bottom:8px}
+p{margin-bottom:12px;color:#8b949e;font-size:14px}
+.prompt-box{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:32px;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8;color:#e6edf3;white-space:pre-wrap;word-wrap:break-word;position:relative}
+.copy-btn{position:absolute;top:12px;right:12px;background:#238636;color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;font-family:'Inter',sans-serif}
+.copy-btn:hover{background:#2ea043}
+.badge{display:inline-block;background:#1f6feb;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-right:6px}
+.note{background:#0d1117;border-left:3px solid #f0883e;padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;font-size:13px}
+</style></head><body><div class="container">
+<h1>Prompt para Claude Code</h1>
+<p>Copia el siguiente prompt completo y pégalo en Claude Code para que genere la nueva versión del sitio web.</p>
+<p class="note"><strong>Nota:</strong> El prompt incluye todo el contenido real de la página, las especificaciones de diseño, las correcciones de errores, y las instrucciones detalladas para crear los 3 archivos (index.html, style.css, script.js).</p>
+<div class="prompt-box" id="prompt-content"><button class="copy-btn" onclick="copyPrompt()">📋 Copiar Prompt</button>
+<pre id="prompt-text" style="white-space: pre-wrap; overflow-wrap: break-word; margin: 0px; font-family: inherit; font-size: inherit; color: inherit;">Eres un experto en diseño web, UX/UI, copywriting y desarrollo frontend. Tu tarea es crear una versión completamente rediseñada y mejorada de la página de tour "4 Day Trip from Tupiza to Uyuni" para La Torre Tours.
+
+Necesito que crees 3 archivos: index.html, style.css y script.js
+
+La página actual tiene muchos problemas que deben ser corregidos. A continuación te doy TODA la información necesaria.
+
+═══════════════════════════════════════════════════
+SECCIÓN 1: INFORMACIÓN DE LA EMPRESA Y CONTACTO
+═══════════════════════════════════════════════════
+
+- Empresa: La Torre Tours (Tour Operator)
+- Slogan: "Making dreams into real stories to tell"
+- Logo URL: https://latorretours-tupiza.com/wp-content/uploads/2023/04/Logo_LaTorre_transparente.svg
+- Email: latorretours@gmail.com
+- Teléfono: +591 26942633
+- WhatsApp: +591 76751355 (link: https://api.whatsapp.com/send/?phone=59176751355)
+- Facebook: https://www.facebook.com/latorretours
+- Instagram: https://www.instagram.com/torretours/
+- Booking URL (Shared Tour): https://book.latorretours-tupiza.com/4d-s
+- Booking URL (Private Tour): https://book.latorretours-tupiza.com/4d-p
+- Idiomas disponibles: English, Spanish (/es/), Portuguese (/pt/)
+- Terms: /terms-and-conditions
+- Privacy: /privacy-policy
+
+Navegación principal:
+- Home: https://latorretours-tupiza.com/
+- Salar de Uyuni: https://latorretours-tupiza.com/salar-de-uyuni/
+- Tours in Tupiza: https://latorretours-tupiza.com/tours-in-tupiza/
+- Around Bolivia: https://latorretours-tupiza.com/around-bolivia/
+- Contact Us: https://latorretours-tupiza.com/contact-us/
+
+═══════════════════════════════════════════════════
+SECCIÓN 2: URLs DE IMÁGENES (USAR ESTAS EXACTAS)
+═══════════════════════════════════════════════════
+
+Hero background image:
+- https://latorretours-tupiza.com/wp-content/uploads/2023/04/4-days-tupiza-uyuni-original-e1681768788541.jpeg
+
+Galería del tour (8 fotos):
+1. El Sillar: https://latorretours-tupiza.com/wp-content/uploads/2023/04/el_sillar-639.webp
+2. Hot Springs: https://latorretours-tupiza.com/wp-content/uploads/2023/04/aguas_termales-639.webp
+3. Desierto Dalí: https://latorretours-tupiza.com/wp-content/uploads/2023/04/desierto_dali-639.webp
+4. Geysers: https://latorretours-tupiza.com/wp-content/uploads/2023/04/geysers_2-639.webp
+5. Laguna Colorada: https://latorretours-tupiza.com/wp-content/uploads/2023/04/laguna_colorada_2-639.webp
+6. Laguna Honda: https://latorretours-tupiza.com/wp-content/uploads/2023/04/laguna_honda-639.webp
+7. Salar de Uyuni 1: https://latorretours-tupiza.com/wp-content/uploads/2023/04/crazy_photo_salar_2-639.webp
+8. Salar de Uyuni 2: https://latorretours-tupiza.com/wp-content/uploads/2023/04/crazy_photo_salar_4-639.webp
+
+Mapa de ruta (imagen estática):
+- https://latorretours-tupiza.com/wp-content/uploads/2023/04/4-days-tupiza-uyuni-original-e1681768788541.jpeg
+(Nota: usar un placeholder para el mapa, puedes usar una imagen genérica o un div con texto "Route Map" ya que la imagen del mapa original no fue extraída directamente)
+
+═══════════════════════════════════════════════════
+SECCIÓN 3: CONTENIDO DEL TOUR (ITINERARIO COMPLETO)
+═══════════════════════════════════════════════════
+
+TÍTULO DEL TOUR: 4 Day Trip from Tupiza to Uyuni
+
+SUBTÍTULO NUEVO (crear este que NO existe en la original):
+"Cross surreal landscapes from the red lagoons of Lípez to the infinite white of the world's largest salt flat"
+
+DATOS RÁPIDOS (mostrar en el hero):
+- Duration: 4 Days / 3 Nights
+- From: $297 USD per person
+- Departures: Daily from Tupiza
+- Group size: Max 5 people per vehicle
+- Rating: #1 Rated on TripAdvisor
+
+TRUST BADGES (corregir — la original tiene un badge desactualizado sobre vacunación):
+1. "18+ Years of Experience" (icono: reloj/calendario)
+2. "#1 on TripAdvisor since 2013" (icono: medalla/estrella)
+3. "Expert Local Guides" (icono: persona/guía)
+4. "24/7 Emergency Support" (icono: teléfono/soporte) ← ESTE REEMPLAZA al badge de vacunación
+
+── DAY 1: TUPIZA → EL SILLAR → CIUDAD DEL ENCANTO → LÍPEZ → QUETENA ──
+
+Highlights: Quebrada de Palala | El Sillar rock formations | Ciudad del Encanto | Gold mining community
+
+Texto mejorado con storytelling (reescribir del original):
+"Your adventure begins in Tupiza, where dramatic red canyons set the stage for an unforgettable journey. First, discover Quebrada de Palala, a spectacular jagged rock formation carved over millennia by wind and rain. Continue to El Sillar, where towering rock spires create a landscape that feels otherworldly. After passing through Nazarenito, a small gold mining community frozen in time, explore Ciudad del Encanto — the 'City of Enchantment' — with its impressive geological formations. As the day unfolds, climb to San Pablo de Lípez (4,250m), then continue through San Antonio de Lípez before arriving at Quetena, where you'll spend your first night under some of the clearest skies you've ever seen."
+
+Overnight: Basic Accommodation in Quetena
+Altitude: Up to 4,250m
+
+── DAY 2: QUETENA → LAGUNA VERDE → LAGUNA COLORADA → HUAYLLAJARA ──
+
+Highlights: Laguna Kollpa | Natural hot springs | Laguna Verde | Dalí Desert | Sol de Mañana Geysers | Laguna Colorada with flamingos
+
+Texto mejorado:
+"Prepare for the most visually stunning day of the journey. After breakfast, visit Laguna Kollpa before continuing through the Salar de Chaiviri to reach natural hot springs — the perfect spot for a rejuvenating soak at altitude. After lunch, be mesmerized by Laguna Verde (4,250m), an emerald jewel nestled at the foot of the imposing Licancabur Volcano (5,868m), marking the border between Chile and Bolivia. Next, enter the surreal Desierto de Dalí, a landscape of otherworldly colors that inspired the legendary artist. Feel the raw power of Earth at the 'Sol de Mañana' Geysers at 5,000m, where steam and mud bubble from deep within. End this incredible day with an hour at Laguna Colorada, where thousands of pink flamingos wade through blood-red waters — a sight you'll never forget."
+
+Overnight: Huayllajara (near Laguna Colorada)
+Altitude: Up to 5,000m
+
+── DAY 3: SILOLI DESERT → ÁRBOL DE PIEDRA → LAGUNAS → UYUNI SALT FLAT SUNSET ──
+
+Highlights: Desierto de Siloli | Árbol de Piedra | Laguna Kara &amp; Kachi | Laguna Negra | Sunset on the salt flat
+
+Texto mejorado:
+"Leave Huayllajara at 07:30 and head to the Desierto de Siloli, home to the famous Árbol de Piedra (Stone Tree) — one of Bolivia's most photographed natural wonders, sculpted by centuries of wind erosion. Continue to the beautiful Andean lagoons of Laguna Kara and Laguna Kachi, where reflections create perfect mirrors of the sky. Visit Laguna Turquiri (Laguna Negra), where rare black Andean ducks glide across dark waters. Pass through the small towns of Julaca and Alota before arriving at Candelaria. As the day's grand finale, enter the vast Uyuni Salt Flat to witness a breathtaking sunset that paints the endless white landscape in shades of gold and crimson."
+
+Note: During rainy season (January to April), if the salt flat has significant water, the overnight stay moves from Candelaria to Uyuni or Colchani.
+
+Overnight: Candelaria
+Altitude: 3,650m
+
+── DAY 4: SUNRISE ON SALAR DE UYUNI → INCAHUASI ISLAND → TRAIN CEMETERY → UYUNI ──
+
+Highlights: Sunrise on the salt flat | Incahuasi Island (giant cacti) | Ojos de Agua | Colchani village | Train Cemetery
+
+Texto mejorado:
+"Wake before dawn to witness one of nature's most spectacular shows: sunrise over the Salar de Uyuni (3,650m). With 12,000 km², this is the largest salt flat on Earth — an infinite white canvas stretching to every horizon, with Volcano Tunupa standing guard in the distance. The salt crust is made up of 11 layers reaching depths of 120 meters, making it the world's largest reserve of lithium. Visit Incahuasi Island, a rocky oasis covered in giant cacti surrounded by an ocean of white. Discover the Ojos de Agua (Eyes of Water), natural springs that bubble through the salt crust. Stop at Colchani, where locals process salt and sell handcrafted souvenirs and alpaca wool clothing. End your adventure at the iconic Cementerio de Trenes (Train Cemetery), a haunting collection of rusting locomotives from Bolivia's mining era. Return to Uyuni city center by 1-2pm."
+
+Note 1: Option to return to Tupiza (additional 3-hour drive).
+Note 2: During rainy season, Incahuasi Island may not be accessible.
+
+═══════════════════════════════════════════════════
+SECCIÓN 4: PRECIOS (DATOS EXACTOS)
+═══════════════════════════════════════════════════
+
+── SHARED TOUR ──
+Description: "A shared tour is the best option if you are traveling alone or want to meet other travelers. We group you with other adventurers, so you don't need to worry about filling the vehicle."
+
+BASIC - $297 USD per person (5 people max per car):
+✓ Transportation in a 4x4
+✓ Oxygen for emergencies
+✓ Spanish Speaking Driver-Guide and Cook
+✓ All food during the tour
+✓ 3 Nights in Basic Accommodations
+✓ Sleeping bags
+✓ 5-bed dorm with shared bathroom
+✗ Shower as extra service (when available)
+
+COMFORT - $397 USD per person (5 people max per car) — MOST BOOKED:
+✓ Transportation in a 4x4
+✓ Oxygen for emergencies
+✓ Spanish Speaking Driver-Guide and Cook
+✓ All food during the tour
+✓ 3 Nights in Basic Accommodations
+✓ Sleeping bags
+✓ Private room (twin or double for 2 people) *$50 USD extra for single room supplement
+✓ Hot shower in the room
+✓ Help buying bus tickets to Tupiza
+✓ Pick up from any accommodation in Tupiza
+
+Booking URL Shared: https://book.latorretours-tupiza.com/4d-s
+
+── PRIVATE TOUR ──
+Description: "A private tour is the best option if you want to travel with more comfort and flexibility, without following standard schedules for stops and photos."
+
+FOR 2 PEOPLE:
+- Basic: $700/person
+- Comfort: $800/person (Popular)
+- Deluxe: $1,450/person
+
+FOR 3 PEOPLE:
+- Basic: $500/person
+- Comfort: $600/person (Popular)
+- Deluxe: $1,150/person
+
+FOR 4 PEOPLE:
+- Basic: $400/person
+- Comfort: $500/person (Popular)
+- Deluxe: $1,100/person
+
+Private BASIC includes (all group sizes):
+✓ Transportation in a 4x4
+✓ Guaranteed Departure
+✓ Oxygen for emergencies
+✓ Spanish Speaking Driver-Guide and Cook
+✓ All food during the tour
+✓ Sleeping bags
+✓ Help buying bus tickets to Tupiza
+✓ Pick up from any accommodation in Tupiza
+✓ 3 Nights in Basic Accommodations
+✓ Twin/Triple/Quadruple with shared bathroom
+✗ Shower as extra service (when available)
+
+Private COMFORT includes (all group sizes):
+(Same as Basic PLUS):
+✓ Twin/Triple/Double room with private bathroom
+✓ Hot shower in the room
+
+Private DELUXE includes (all group sizes):
+(Same as Comfort PLUS premium hotels):
+✓ 1 Night in Mallku Cueva Hotel or similar
+✓ 1 Night in Tayka Desierto Hotel or similar
+✓ 1 Night in Palacio de Sal Hotel / Luna Salada Hotel or similar
+✓ Twin/Triple/Double room with private bathroom
+✓ Hot shower in the room
+
+Booking URL Private: https://book.latorretours-tupiza.com/4d-p
+
+── NOT INCLUDED (corregir "EXCLUDINGS" → "Not Included") ──
+• Entrance fees: USD 32 per person total (Bs 221). *Must be paid in Bolivian pesos.
+• English guide: USD 260 per group (optional). *For shared tours, if other group members don't need an English guide, you pay the full amount alone.
+• Public bathrooms: Bs 5-7 (approx. 1 USD) per use, when available.
+• Hot shower: For Basic option in shared or private tours.
+• Tips: Totally optional, no minimum or maximum.
+
+── WHAT TO BRING ──
+Warm clothes, Comfortable shoes, Sun cream, Sunglasses, Toilet paper, Towel, Personal care products
+
+═══════════════════════════════════════════════════
+SECCIÓN 5: TESTIMONIOS (CREAR — NO EXISTEN EN LA ORIGINAL)
+═══════════════════════════════════════════════════
+
+Crear 3 testimonios ficticios pero realistas:
+
+1. "The 4-day route from Tupiza was the highlight of our South America trip. The landscapes are out of this world — Laguna Colorada with the flamingos was absolutely breathtaking. Our guide Carlos was incredibly knowledgeable and the food was surprisingly good for being in the middle of nowhere!"
+— Sarah &amp; Tom, United Kingdom ★★★★★
+
+2. "I did the Comfort shared tour and it was worth every penny. The sunsets on the salt flat and the sunrise the next morning were experiences I'll never forget. La Torre Tours is clearly the most professional operator — everything was well organized."
+— Marco B., Germany ★★★★★
+
+3. "Incredible experience from start to finish. The geysers at 5,000m, the Dalí desert, the giant cacti on Incahuasi Island... every day was more amazing than the last. Highly recommend choosing the 4-day route from Tupiza over the 3-day from Uyuni — you see so much more!"
+— Ana Luísa, Brazil ★★★★★
+
+═══════════════════════════════════════════════════
+SECCIÓN 6: FAQ (CREAR — NO EXISTE EN LA ORIGINAL)
+═══════════════════════════════════════════════════
+
+Q: What about altitude sickness?
+A: The tour reaches altitudes up to 5,000m. We carry oxygen for emergencies and recommend acclimatizing in Tupiza (2,950m) for at least one day before the tour. Drinking coca tea helps, and our guides are trained to handle altitude-related issues.
+
+Q: What is the weather like?
+A: Temperatures can drop to -15°C at night (May-September) and reach 20°C during the day. During rainy season (January-April), temperatures are milder but some areas may be flooded. Bring layers and warm clothing regardless of the season.
+
+Q: Is there electricity to charge devices?
+A: Most accommodations have limited electricity, usually available for a few hours in the evening. We recommend bringing a portable power bank. The Deluxe option hotels have full electricity.
+
+Q: What is the cancellation policy?
+A: Free cancellation up to 48 hours before departure. Contact us for more details on our refund policy.
+
+Q: Is the tour suitable for children?
+A: Children over 6 years old can join the tour. However, due to high altitude and long driving distances, it's recommended for children over 10 who are comfortable with adventure travel.
+
+Q: What type of vehicle do you use?
+A: We use Toyota Land Cruiser 4x4 vehicles, well-maintained and equipped for the rugged terrain of the Bolivian altiplano.
+
+Q: Why choose the 4-day route from Tupiza instead of the 3-day from Uyuni?
+A: The Tupiza route includes exclusive landscapes not seen on the Uyuni route: the dramatic red canyons, Ciudad del Encanto, and the southern Lípez region. You also travel in the opposite direction from most groups, meaning fewer crowds at popular stops.
+
+Q: What meals are included?
+A: All meals are included: breakfast, lunch, and dinner each day, plus snacks. Our cook prepares fresh meals along the route. Please let us know about dietary requirements in advance.
+
+═══════════════════════════════════════════════════
+SECCIÓN 7: ESPECIFICACIONES DE DISEÑO Y DESARROLLO
+═══════════════════════════════════════════════════
+
+TIPOGRAFÍAS (usar Google Fonts):
+- Headings: "Montserrat" (weights: 600, 700, 800)
+- Body text: "Inter" (weights: 300, 400, 500, 600)
+- NO usar fuentes decorativas en ningún lugar
+
+PALETA DE COLORES:
+- Primary: #2A9D8F (teal/turquesa — para elementos interactivos, links, acentos)
+- Primary Dark: #1A7A6F
+- Accent/CTA: #E76F51 (coral/naranja — SOLO para botones de booking y urgencia)
+- Accent Hover: #D55A3E
+- Dark: #264653 (azul oscuro — header, footer, fondos oscuros)
+- Light Background: #F8F9FA
+- White: #FFFFFF
+- Text Primary: #1A1A2E
+- Text Secondary: #6C757D
+- Text on Dark: #FFFFFF
+- Success: #2D6A4F (para checkmarks incluidos)
+- Muted: #ADB5BD (para items no incluidos)
+- Star/Rating: #FFB703 (amarillo — para estrellas de rating)
+- Border: #E9ECEF
+
+ESTRUCTURA HTML (index.html):
+
+1. HEADER (sticky, con shadow al scroll):
+   - Logo a la izquierda (link al home)
+   - Navegación centrada: Home, Salar de Uyuni, Tours in Tupiza, Around Bolivia, Contact Us
+   - Selector de idioma a la derecha (solo uno, en el header)
+   - Hamburger menu para mobile
+   - Debe tener clase "scrolled" al hacer scroll (agrega sombra y reduce padding)
+
+2. HERO SECTION (full-width, full-viewport-height):
+   - Background image con gradient overlay: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%)
+   - Breadcrumbs arriba: Home &gt; Salar de Uyuni &gt; 4 Day Trip from Tupiza to Uyuni
+   - H1: "4 Day Trip from Tupiza to Uyuni" (blanco, grande, Montserrat Bold)
+   - Subtítulo emocional debajo
+   - Quick facts bar: 4 Days | From $297 | Daily Departures | Max 5 people | #1 on TripAdvisor
+   - DOS CTAs: Botón primario "Book Now — From $297" (coral) + Botón secundario "See Full Itinerary" (outline blanco, scroll hacia abajo)
+
+3. TRUST BADGES BAR (4 badges horizontales con iconos):
+   - 18+ Years Experience
+   - #1 on TripAdvisor since 2013
+   - Expert Local Guides
+   - 24/7 Emergency Support
+
+4. STICKY SECTION NAV (aparece al hacer scroll pasado el hero):
+   - Mini navegación interna con links: Route | Itinerary | Gallery | Prices | FAQ
+   - Se mantiene sticky debajo del header
+   - Resalta la sección activa (usar IntersectionObserver)
+
+5. ROUTE SECTION (id="route"):
+   - H2: "Your Route"
+   - Mapa estático con leyenda de colores por día
+   - Mini resumen de cada día al lado
+
+6. ITINERARY SECTION (id="itinerary"):
+   - H2: "Day by Day Itinerary"
+   - Formato TIMELINE VERTICAL (NO acordeón cerrado)
+   - Cada día tiene: número de día en un círculo, título del día, highlights como tags/chips, texto descriptivo completo, datos (altitud, overnight location), una foto asociada
+   - TODOS los días visibles por defecto (no ocultos)
+   - Usar layout alternado: foto izquierda/texto derecha para día 1, luego al revés para día 2, etc.
+
+7. GALLERY SECTION (id="gallery"):
+   - H2: "Experience It"
+   - Grid de fotos (no carrusel simple) — 8 fotos
+   - Al hacer clic: lightbox con zoom, navegación por flechas, captions descriptivas
+   - Captions mejorados: "El Sillar — Towering rock formations in the Quebrada", "Laguna Colorada — Home to thousands of flamingos at 4,278m", etc.
+
+8. TESTIMONIALS SECTION (antes de precios):
+   - H2: "What Travelers Say"
+   - 3 testimonios en cards
+   - Cada card: texto de la review, nombre del viajero, país, 5 estrellas
+   - Fondo ligeramente diferente (#F8F9FA)
+
+9. PRICING SECTION (id="prices"):
+   - H2: "Prices &amp; Packages"
+   - Tab selector: SHARED TOUR | PRIVATE TOUR (estilo toggle/tabs, no los botones decorativos actuales)
+   
+   SHARED TOUR TAB:
+   - Texto introductorio
+   - 2 cards lado a lado: Basic ($297) y Comfort ($397)
+   - Comfort card debe ser visualmente dominante (borde, badge "Most Popular", ligeramente más grande o con sombra)
+   - Usar checkmarks verdes (✓) para features incluidas
+   - Features exclusivas del plan superior resaltadas en color
+   - UN botón "Book Now" debajo de las cards (coral)
+   - Trust bar debajo: "Secure Payment | Free Cancellation 48h | Best Price Guaranteed"
+
+   PRIVATE TOUR TAB:
+   - Texto introductorio
+   - Selector de grupo: 2 People | 3 People | 4 People (tabs o botones)
+   - Para cada tamaño de grupo: 3 cards (Basic, Comfort, Deluxe)
+   - Comfort marcado como "Popular"
+   - UN botón "Book Now" debajo
+   - Trust bar
+
+10. NOT INCLUDED &amp; WHAT TO BRING SECTION:
+    - H2: "Good to Know" (NO "EXCLUDINGS")
+    - Dos columnas: "Not Included in the Price" (izq) + "What to Bring" (der)
+    - Diseño limpio con iconos
+
+11. FAQ SECTION (id="faq"):
+    - H2: "Frequently Asked Questions"
+    - Acordeón con las 8 preguntas
+    - Schema markup FAQ (en JSON-LD en el head)
+    - Primera pregunta abierta por defecto
+
+12. FINAL CTA SECTION:
+    - Fondo oscuro (Dark color)
+    - "Ready for the Adventure of a Lifetime?"
+    - Subtítulo: "Join hundreds of travelers who chose the #1 rated tour from Tupiza to Uyuni"
+    - Botón "Book Now" + Botón "Chat on WhatsApp" (con mensaje pre-rellenado)
+
+13. FOOTER (4 columnas):
+    - Col 1: Logo + tagline + dirección: "Calle Chichas, Tupiza, Bolivia"
+    - Col 2: Quick Links (Home, Salar de Uyuni, Tours in Tupiza, Around Bolivia, Contact Us)
+    - Col 3: Contact Info (Email, Phone, WhatsApp) + horario: "Mon-Sun: 8am - 8pm (Bolivia Time)"
+    - Col 4: TripAdvisor badges + Social media icons (Facebook, Instagram, WhatsApp)
+    - Debajo: Copyright "© 2026 La Torre Tours. All rights reserved." + Terms &amp; Privacy links
+
+14. FLOATING ELEMENTS:
+    - WhatsApp button (esquina inferior derecha) con label "Chat with us" que aparece al hover. Mensaje pre-rellenado: "Hi! I'm interested in the 4-Day Trip from Tupiza to Uyuni. Could you help me with more information?"
+    - Back to top button (aparece al hacer scroll)
+    - NO incluir widget de idioma flotante (solo en header)
+
+═══════════════════════════════════════════════════
+SECCIÓN 8: FUNCIONALIDADES JavaScript (script.js)
+═══════════════════════════════════════════════════
+
+1. STICKY HEADER:
+   - Al hacer scroll &gt; 100px, agregar clase "scrolled" al header
+   - Reducir padding y agregar box-shadow
+   - Transición suave
+
+2. SMOOTH SCROLL:
+   - Todos los anchor links (#route, #itinerary, etc.) hacen scroll suave
+   - Offset para compensar el header sticky
+
+3. SECTION NAV ACTIVE STATE:
+   - Usar IntersectionObserver para detectar qué sección está visible
+   - Resaltar el link correspondiente en la section nav
+
+4. PRICING TABS:
+   - Tab switching entre Shared/Private
+   - En Private: sub-tabs para 2/3/4 people
+   - Animación de fade al cambiar
+
+5. FAQ ACCORDION:
+   - Click para expandir/colapsar
+   - Solo una pregunta abierta a la vez
+   - Primera pregunta abierta por defecto
+   - Animación suave de altura
+
+6. LIGHTBOX GALLERY:
+   - Click en imagen abre lightbox
+   - Navegación con flechas (y teclas del teclado)
+   - Close con X, click fuera, o tecla Escape
+   - Caption debajo de cada foto
+   - Counter "1/8"
+
+7. MOBILE MENU:
+   - Hamburger toggle
+   - Menú slide-in desde la derecha
+   - Close al hacer click en un link
+
+8. BACK TO TOP:
+   - Aparece al hacer scroll &gt; 500px
+   - Click hace scroll suave arriba
+
+9. WHATSAPP BUTTON:
+   - Siempre visible (bottom-right)
+   - Label "Chat with us" visible en hover en desktop
+   - En mobile: solo icono
+   - Link con mensaje pre-rellenado
+
+10. LAZY LOADING:
+    - Usar loading="lazy" en todas las imágenes excepto la hero y las del viewport inicial
+
+═══════════════════════════════════════════════════
+SECCIÓN 9: SEO Y META TAGS (incluir en el head)
+═══════════════════════════════════════════════════
+
+Title: "4-Day Tupiza to Uyuni Salt Flat Tour | From $297 | La Torre Tours"
+
+Meta Description: "4-day adventure from Tupiza to the Uyuni Salt Flat. Visit Laguna Colorada, flamingos, geysers &amp; Incahuasi Island. From $297/person. Book with Bolivia's #1 rated tour operator."
+
+Open Graph:
+- og:title: "4-Day Tupiza to Uyuni Salt Flat Tour — La Torre Tours"
+- og:description: "Cross surreal landscapes from the red lagoons of Lípez to the infinite white of the world's largest salt flat. 4 days of pure adventure."
+- og:image: (usar la URL de la imagen del hero)
+- og:url: https://latorretours-tupiza.com/salar-de-uyuni/4-days-tupiza-uyuni/
+- og:type: website
+- og:locale: en_US
+
+Twitter Card:
+- twitter:card: summary_large_image
+- twitter:title: (same as og:title)
+- twitter:description: (same as og:description)
+- twitter:image: (same as og:image)
+
+Canonical: https://latorretours-tupiza.com/salar-de-uyuni/4-days-tupiza-uyuni/
+
+Schema Markup (JSON-LD) — incluir estos schemas:
+
+1. TouristTrip schema con nombre, descripción, precio, provider
+2. FAQPage schema con todas las preguntas y respuestas
+3. BreadcrumbList schema: Home &gt; Salar de Uyuni &gt; 4 Day Trip
+4. AggregateRating: rating 5/5, reviewCount: 847 (aproximado)
+
+═══════════════════════════════════════════════════
+SECCIÓN 10: RESPONSIVE DESIGN
+═══════════════════════════════════════════════════
+
+BREAKPOINTS:
+- Mobile: max-width 768px
+- Tablet: 769px - 1024px
+- Desktop: 1025px+
+
+MOBILE específico:
+- Hamburger menu
+- Hero: texto más pequeño, CTAs apilados verticalmente
+- Trust badges: 2x2 grid
+- Itinerary: fotos encima del texto (no alternado)
+- Pricing cards: apiladas verticalmente
+- Footer: 1 columna, todo apilado
+- Gallery: 2 columnas
+- Section nav: scroll horizontal
+
+TABLET:
+- Pricing cards: 2 por fila para shared, 3 por fila (más pequeñas) para private
+- Gallery: 3 columnas
+- Footer: 2 columnas
+
+═══════════════════════════════════════════════════
+SECCIÓN 11: CORRECCIONES CRÍTICAS A IMPLEMENTAR
+═══════════════════════════════════════════════════
+
+ESTAS SON LAS CORRECCIONES OBLIGATORIAS del informe de auditoría:
+
+1. ✅ CORREGIR "EXCLUDINGS" → "Not Included in the Price"
+2. ✅ CORREGIR errores gramaticales: "tou" → "you", "enter to the" → "enter the", "After the breakfast" → "After breakfast"
+3. ✅ ELIMINAR badge de vacunación → Reemplazar por "24/7 Emergency Support"
+4. ✅ ACTUALIZAR copyright: 2023 → 2026
+5. ✅ AÑADIR Open Graph y Twitter Card meta tags
+6. ✅ AÑADIR Schema markup (TouristTrip, FAQ, BreadcrumbList, AggregateRating)
+7. ✅ CORREGIR jerarquía de headings: H1 → H2 → H3 (nunca saltar niveles)
+8. ✅ AÑADIR alt text descriptivo a TODAS las imágenes
+9. ✅ AÑADIR breadcrumbs visibles
+10. ✅ HACER header sticky
+11. ✅ AÑADIR CTA en el hero (above the fold)
+12. ✅ AÑADIR sección de testimonios
+13. ✅ AÑADIR sección de FAQ
+14. ✅ SIMPLIFICAR sección de precios con tabs claros
+15. ✅ AÑADIR navegación interna por secciones
+16. ✅ AÑADIR barra de confianza cerca de los CTAs de booking
+17. ✅ REESCRIBIR itinerario con storytelling emocional
+18. ✅ UNIFICAR tipografías (solo Montserrat + Inter)
+19. ✅ DEFINIR paleta de colores coherente
+20. ✅ AÑADIR lightbox a la galería
+21. ✅ AÑADIR WhatsApp con mensaje pre-rellenado
+22. ✅ ELIMINAR selector de idioma duplicado (mantener solo el del header)
+23. ✅ AÑADIR footer con 4 columnas estructuradas
+24. ✅ AÑADIR botón "Back to Top"
+25. ✅ AÑADIR meta description específica del tour
+
+═══════════════════════════════════════════════════
+SECCIÓN 12: ESTRUCTURA DE ARCHIVOS
+═══════════════════════════════════════════════════
+
+Crear exactamente 3 archivos:
+
+📄 index.html — HTML completo con todo el contenido, meta tags, schema markup, y estructura semántica
+📄 style.css — Todos los estilos, variables CSS, responsive design, animaciones, print styles
+📄 script.js — Toda la interactividad: sticky header, tabs, accordion, lightbox, smooth scroll, IntersectionObserver, mobile menu
+
+IMPORTANTE:
+- El HTML debe ser semántico (header, nav, main, section, article, footer)
+- Usar CSS custom properties (variables) para colores y tipografías
+- El JS debe ser vanilla (NO usar jQuery ni frameworks)
+- Todo debe funcionar sin servidor (archivos estáticos)
+- Incluir print styles en CSS para que la página se vea bien al imprimir
+- El código debe estar bien comentado
+- Asegurarse de que el lightbox funcione correctamente con teclado (accesibilidad)
+- Usar Font Awesome o SVG inline para iconos (preferir SVG inline para no depender de CDN adicionales, pero si prefieres Font Awesome usa el CDN: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css)
+
+AHORA, por favor crea los 3 archivos completos con todo el contenido implementado.</pre></div></div>
+<script>
+function copyPrompt(){
+  const el = document.getElementById('prompt-text');
+  navigator.clipboard.writeText(el.textContent).then(()=>{
+    document.querySelector('.copy-btn').textContent='✅ Copiado!';
+    setTimeout(()=>document.querySelector('.copy-btn').textContent='📋 Copiar Prompt',2000);
+  });
+}
+</script></body></html>

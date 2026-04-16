@@ -367,6 +367,164 @@
   loadPrices();
 
   /* ──────────────────────────────────────────────────────────
+     13. INTERACTIVE ROUTE MAP (Leaflet.js)
+  ────────────────────────────────────────────────────────── */
+  function initRouteMap() {
+    const mapEl = document.getElementById('route-map');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    // Center roughly on the route midpoint
+    const map = L.map('route-map', {
+      center: [-21.8, -66.8],
+      zoom: 7,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+
+    // Tile layer — OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 17
+    }).addTo(map);
+
+    // ── Route coordinates per day ──────────────────────────
+    const routes = {
+      day1: {
+        color: '#3B82F6',
+        coords: [
+          [-21.4554, -65.7245], // Tupiza
+          [-21.6200, -65.9500],
+          [-21.7800, -66.2000],
+          [-21.9600, -66.4800],
+          [-22.0500, -66.7000]  // Quetena Chico
+        ]
+      },
+      day2: {
+        color: '#F97316',
+        coords: [
+          [-22.0500, -66.7000], // Quetena Chico
+          [-22.1500, -66.8500],
+          [-22.2800, -67.0500],
+          [-22.4200, -67.2800],
+          [-22.5500, -67.5500]  // Laguna Colorada area
+        ]
+      },
+      day3: {
+        color: '#EAB308',
+        coords: [
+          [-22.5500, -67.5500], // Laguna Colorada
+          [-22.6800, -67.7000],
+          [-22.7500, -67.8500],
+          [-22.8200, -68.0000],
+          [-22.9000, -68.1800]  // Huayllajara / Candelaria area
+        ]
+      },
+      day4: {
+        color: '#22C55E',
+        coords: [
+          [-22.9000, -68.1800], // Candelaria
+          [-22.9800, -68.3500],
+          [-20.9000, -67.6500],
+          [-20.6000, -67.3500],
+          [-20.4600, -66.8259]  // Uyuni
+        ]
+      }
+    };
+
+    // Draw polylines
+    const polylines = {};
+    Object.entries(routes).forEach(([key, r]) => {
+      polylines[key] = L.polyline(r.coords, {
+        color: r.color,
+        weight: 4,
+        opacity: 0.85,
+        lineJoin: 'round'
+      }).addTo(map);
+    });
+
+    // ── Helper: custom divIcon ─────────────────────────────
+    function makeIcon(cls, label) {
+      return L.divIcon({
+        className: '',
+        html: `<div class="custom-marker ${cls}">${label}</div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      });
+    }
+
+    // ── Markers ────────────────────────────────────────────
+    const stops = [
+      {
+        latlng: [-21.4554, -65.7245],
+        icon: makeIcon('marker-start', 'S'),
+        day: 'Start',
+        name: 'Tupiza',
+        desc: 'Departure point — red canyon landscape'
+      },
+      {
+        latlng: [-22.0500, -66.7000],
+        icon: makeIcon('marker-overnight', '1'),
+        day: 'Night 1',
+        name: 'Quetena Chico',
+        desc: 'Basic refuge near the Eduardo Avaroa Reserve'
+      },
+      {
+        latlng: [-22.5500, -67.5500],
+        icon: makeIcon('marker-overnight', '2'),
+        day: 'Night 2',
+        name: 'Laguna Colorada Area',
+        desc: 'Red lake famous for flamingos at 4,300 m'
+      },
+      {
+        latlng: [-22.9000, -68.1800],
+        icon: makeIcon('marker-overnight', '3'),
+        day: 'Night 3',
+        name: 'Candelaria',
+        desc: 'Last overnight before the salt flat'
+      },
+      {
+        latlng: [-20.4600, -66.8259],
+        icon: makeIcon('marker-end', 'U'),
+        day: 'End',
+        name: 'Uyuni',
+        desc: 'Gateway to the world\'s largest salt flat'
+      }
+    ];
+
+    stops.forEach(s => {
+      L.marker(s.latlng, { icon: s.icon })
+        .addTo(map)
+        .bindPopup(
+          `<div class="popup-inner">
+            <div class="popup-day">${s.day}</div>
+            <div class="popup-name">${s.name}</div>
+            <div class="popup-desc">${s.desc}</div>
+          </div>`,
+          { className: 'map-popup', maxWidth: 220 }
+        );
+    });
+
+    // ── Legend toggle ──────────────────────────────────────
+    const legendItems = document.querySelectorAll('.legend-item[data-day]');
+    legendItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const day = 'day' + item.dataset.day;
+        const pl = polylines[day];
+        if (!pl) return;
+        if (map.hasLayer(pl)) {
+          map.removeLayer(pl);
+          item.classList.add('faded');
+        } else {
+          pl.addTo(map);
+          item.classList.remove('faded');
+        }
+      });
+    });
+  }
+
+  initRouteMap();
+
+  /* ──────────────────────────────────────────────────────────
      INIT COMPLETE
   ────────────────────────────────────────────────────────── */
   console.log('[La Torre Tours] Page ready.');
