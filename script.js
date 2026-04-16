@@ -367,7 +367,59 @@
   loadPrices();
 
   /* ──────────────────────────────────────────────────────────
-     13. INTERACTIVE ROUTE MAP (Leaflet.js)
+     13. ITINERARY ACCORDION
+  ────────────────────────────────────────────────────────── */
+  const idayTriggers = document.querySelectorAll('.iday-trigger');
+
+  const expandAllBtn = document.getElementById('itineraryExpandAll');
+  if (expandAllBtn) {
+    expandAllBtn.addEventListener('click', () => {
+      const allExpanded = expandAllBtn.dataset.expanded === 'true';
+      idayTriggers.forEach(t => {
+        const panel = t.closest('.iday').querySelector('.iday-panel');
+        if (allExpanded) {
+          t.setAttribute('aria-expanded', 'false');
+          panel.hidden = true;
+        } else {
+          t.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+        }
+      });
+      expandAllBtn.dataset.expanded = allExpanded ? 'false' : 'true';
+      expandAllBtn.querySelector('span').textContent = allExpanded ? 'Expand All Days' : 'Collapse All Days';
+      expandAllBtn.querySelector('i').className = allExpanded
+        ? 'fas fa-expand-alt'
+        : 'fas fa-compress-alt';
+    });
+  }
+
+  idayTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const article = trigger.closest('.iday');
+      const panel   = article.querySelector('.iday-panel');
+      const isOpen  = trigger.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        // Close this one
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      } else {
+        // Close all others first
+        idayTriggers.forEach(t => {
+          if (t !== trigger) {
+            t.setAttribute('aria-expanded', 'false');
+            t.closest('.iday').querySelector('.iday-panel').hidden = true;
+          }
+        });
+        // Open this one
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+    });
+  });
+
+  /* ──────────────────────────────────────────────────────────
+     15. INTERACTIVE ROUTE MAP (Leaflet.js)
   ────────────────────────────────────────────────────────── */
   function initRouteMap() {
     const mapEl = document.getElementById('route-map');
