@@ -577,6 +577,49 @@
   initRouteMap();
 
   /* ──────────────────────────────────────────────────────────
+     13. ITINERARY ACCORDION
+  ────────────────────────────────────────────────────────── */
+  const dayTriggers = document.querySelectorAll('.day-trigger');
+
+  const expandAllBtn = document.getElementById('itineraryExpandAll');
+  if (expandAllBtn) {
+    expandAllBtn.addEventListener('click', () => {
+      const allExpanded = expandAllBtn.dataset.expanded === 'true';
+      dayTriggers.forEach(t => {
+        const panel = t.closest('.itinerary-day').querySelector('.day-panel');
+        t.setAttribute('aria-expanded', allExpanded ? 'false' : 'true');
+        panel.hidden = allExpanded;
+      });
+      expandAllBtn.dataset.expanded = allExpanded ? 'false' : 'true';
+      expandAllBtn.querySelector('span').textContent = allExpanded ? 'Expand All Days' : 'Collapse All Days';
+      expandAllBtn.querySelector('i').className = allExpanded ? 'fas fa-expand-alt' : 'fas fa-compress-alt';
+    });
+  }
+
+  dayTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const article = trigger.closest('.itinerary-day');
+      const panel   = article.querySelector('.day-panel');
+      const isOpen  = trigger.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      } else {
+        // Close all others
+        dayTriggers.forEach(t => {
+          if (t !== trigger) {
+            t.setAttribute('aria-expanded', 'false');
+            t.closest('.itinerary-day').querySelector('.day-panel').hidden = true;
+          }
+        });
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+    });
+  });
+
+  /* ──────────────────────────────────────────────────────────
      INIT COMPLETE
   ────────────────────────────────────────────────────────── */
   console.log('[La Torre Tours] Page ready.');

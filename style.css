@@ -1048,12 +1048,76 @@ h3 {
 }
 .itinerary-timeline[hidden] { display: none; }
 
+/* Expand All button */
+.itinerary-accordion-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.itinerary-expand-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.itinerary-expand-all:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(42,157,143,.05);
+}
+
 .itinerary-day {
   display: grid;
   grid-template-columns: 60px 1fr;
   gap: 0 32px;
   margin-bottom: 0;
 }
+
+/* day-main: replaces day-body as the direct grid child */
+.day-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Trigger button — wraps header + highlights, always visible */
+.day-trigger {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 8px 0 12px;
+  cursor: pointer;
+}
+.day-trigger:hover .day-header h3 { color: var(--color-primary); }
+
+.day-trigger-inner { flex: 1; min-width: 0; }
+
+.day-chevron {
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+}
+.day-trigger[aria-expanded="true"] .day-chevron {
+  transform: rotate(180deg);
+}
+
+/* Collapsible panel */
+.day-panel[hidden] { display: none; }
 
 .day-marker {
   display: flex;
