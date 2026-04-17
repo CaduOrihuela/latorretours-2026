@@ -130,17 +130,20 @@
   const pricingPanels = document.querySelectorAll('.pricing-panel');
 
   const bookConfig = {
-    shared:  { label: 'Book Shared Tour',  url: 'https://book.latorretours-tupiza.com/4d-s' },
-    private: { label: 'Book Private Tour', url: 'https://book.latorretours-tupiza.com/4d-p' }
+    shared:  { label: 'Book Shared Tour',        mobileLabel: 'Book Shared Tour Now',  url: 'https://book.latorretours-tupiza.com/4d-s' },
+    private: { label: 'Book Private Tour',       mobileLabel: 'Book Private Tour Now', url: 'https://book.latorretours-tupiza.com/4d-p' }
   };
 
   function updateNavBook(tourType) {
+    const cfg = bookConfig[tourType];
+    if (!cfg) return;
     const btn   = document.getElementById('navBookBtn');
     const label = document.getElementById('navBookLabel');
-    const cfg   = bookConfig[tourType];
-    if (!btn || !label || !cfg) return;
-    label.textContent = cfg.label;
-    btn.href = cfg.url;
+    if (btn && label) { label.textContent = cfg.label; btn.href = cfg.url; }
+    const mobileBar   = document.getElementById('mobileBookBtn');
+    const mobileLabel = document.getElementById('mobileBookLabel');
+    if (mobileBar) mobileBar.href = cfg.url;
+    if (mobileLabel) mobileLabel.textContent = cfg.mobileLabel;
   }
 
   pricingTabs.forEach(tab => {
@@ -642,6 +645,18 @@
       }
     });
   });
+
+  /* ──────────────────────────────────────────────────────────
+     MOBILE BOOK BAR — show when hero CTA scrolls out of view
+  ────────────────────────────────────────────────────────── */
+  const mobileBookBar = document.getElementById('mobileBookBtn');
+  const heroCta       = document.getElementById('heroCta');
+
+  if (mobileBookBar && heroCta) {
+    new IntersectionObserver(([entry]) => {
+      mobileBookBar.classList.toggle('mobile-book-bar--visible', !entry.isIntersecting);
+    }, { threshold: 0 }).observe(heroCta);
+  }
 
   /* ──────────────────────────────────────────────────────────
      INIT COMPLETE
