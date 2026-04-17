@@ -1832,39 +1832,41 @@ h3 {
 /* ── WHAT TO BRING grid ── */
 .gtk-bring-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
 
 .gtk-bring-item {
   background: var(--color-white);
   border-radius: 14px;
-  padding: 26px 16px 22px;
+  padding: 20px 18px;
   border: 1px solid rgba(42,157,143,.12);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 6px;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 16px;
 }
 .gtk-bring-icon {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
   background: rgba(42,157,143,.10);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+  font-size: 1.2rem;
   flex-shrink: 0;
 }
 .gtk-bring-item strong {
+  display: block;
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-dark);
   line-height: 1.2;
+  margin-bottom: 4px;
 }
 .gtk-bring-item span {
   font-size: 0.82rem;
@@ -2474,7 +2476,7 @@ h3 {
 
   /* Back to top */
   .back-to-top { bottom: 100px; right: 20px; }
-  .whatsapp-float { bottom: 20px; right: 20px; }
+  .whatsapp-float { bottom: 84px; right: 20px; }
 }
 
 /* ═══════════════════════════════════════════════════════════

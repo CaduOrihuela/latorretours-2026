@@ -276,17 +276,6 @@
   });
 
   /* ──────────────────────────────────────────────────────────
-     10. BACK TO TOP
-  ────────────────────────────────────────────────────────── */
-  const backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 500);
-    }, { passive: true });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
-
-  /* ──────────────────────────────────────────────────────────
      11. SCROLL ANIMATIONS
   ────────────────────────────────────────────────────────── */
   const animateTargets = document.querySelectorAll(
