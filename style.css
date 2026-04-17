@@ -1143,10 +1143,10 @@ h3 {
   box-shadow: 0 0 0 4px rgba(42,157,143,.15);
 }
 
-.itinerary-day:nth-child(1) .day-circle { background: var(--day1-color); box-shadow: 0 0 0 4px rgba(231,111,81,.15); }
-.itinerary-day:nth-child(2) .day-circle { background: var(--day2-color); }
-.itinerary-day:nth-child(3) .day-circle { background: var(--day3-color); }
-.itinerary-day:nth-child(4) .day-circle { background: var(--day4-color); box-shadow: 0 0 0 4px rgba(255,183,3,.15); }
+.itinerary-day:nth-child(1) .day-circle { background: rgba(59,130,246,.12);  color: #3B82F6; box-shadow: 0 0 0 4px rgba(59,130,246,.08);  border: 2px solid rgba(59,130,246,.3);  }
+.itinerary-day:nth-child(2) .day-circle { background: rgba(249,115,22,.12);  color: #F97316; box-shadow: 0 0 0 4px rgba(249,115,22,.08);  border: 2px solid rgba(249,115,22,.3);  }
+.itinerary-day:nth-child(3) .day-circle { background: rgba(234,179,8,.12);   color: #D4A000; box-shadow: 0 0 0 4px rgba(234,179,8,.08);   border: 2px solid rgba(234,179,8,.3);   }
+.itinerary-day:nth-child(4) .day-circle { background: rgba(34,197,94,.12);   color: #22C55E; box-shadow: 0 0 0 4px rgba(34,197,94,.08);   border: 2px solid rgba(34,197,94,.3);   }
 
 .day-line {
   width: 2px;
@@ -2441,7 +2441,7 @@ h3 {
 }
 
 #route-map {
-  height: 480px;
+  height: 650px;
   width: 100%;
   background: #e8e0d5;
 }
@@ -2557,6 +2557,22 @@ h3 {
   color: var(--color-text-muted);
   line-height: 1.4;
 }
+
+/* Map stop labels */
+.map-label {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-body) !important;
+  color: #1a1a2e !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+.map-label::before { display: none !important; }
 
 @media (max-width: 768px) {
   #route-map { height: 320px; }

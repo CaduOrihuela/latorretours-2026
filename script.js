@@ -373,143 +373,219 @@
     const mapEl = document.getElementById('route-map');
     if (!mapEl || typeof L === 'undefined') return;
 
-    // Center roughly on the route midpoint
     const map = L.map('route-map', {
-      center: [-21.8, -66.8],
-      zoom: 7,
       zoomControl: true,
       scrollWheelZoom: false
     });
 
-    // Tile layer — OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 17
+    // CartoDB Voyager — clean, terrain-friendly
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+      maxZoom: 19
     }).addTo(map);
 
-    // ── Route coordinates per day ──────────────────────────
-    const routes = {
-      day1: {
-        color: '#3B82F6',
-        coords: [
-          [-21.4554, -65.7245], // Tupiza
-          [-21.6200, -65.9500],
-          [-21.7800, -66.2000],
-          [-21.9600, -66.4800],
-          [-22.0500, -66.7000]  // Quetena Chico
+    // ── Day definitions ────────────────────────────────────
+    const days = [
+      {
+        key: 'day1',
+        label: 'Day 1',
+        color: '#3498db',
+        stops: [
+          { name: 'La Torre Tours (Tupiza)',      latlng: [-21.44566, -65.71886], dir: 'top', labelOffset: [0, -38] },
+          { name: 'El Sillar',                    latlng: [-21.45060, -65.81769], dir: 'bottom' },
+          { name: 'Ciudad del Encanto',           latlng: [-21.44271, -66.60851], dir: 'top'    },
+          { name: 'San Pablo de Lípez',           latlng: [-21.63487, -66.64057], dir: 'right'  },
+          { name: 'San Antonio de Lípez',         latlng: [-21.77386, -66.88633], dir: 'right'  },
+          { name: 'Quetena Chico',                latlng: [-22.19730, -67.35393], dir: 'right'  }
         ]
       },
-      day2: {
-        color: '#F97316',
-        coords: [
-          [-22.0500, -66.7000], // Quetena Chico
-          [-22.1500, -66.8500],
-          [-22.2800, -67.0500],
-          [-22.4200, -67.2800],
-          [-22.5500, -67.5500]  // Laguna Colorada area
+      {
+        key: 'day2',
+        label: 'Day 2',
+        color: '#e67e22',
+        stops: [
+          { name: 'Quetena Chico',                latlng: [-22.19730, -67.35393], dir: 'right'  },
+          { name: 'Laguna Hedionda Sur',          latlng: [-22.45945, -67.38521], dir: 'right'  },
+          { name: 'Salar de Chalviri',            latlng: [-22.47374, -67.55934], dir: 'right', labelOffset: [5, 20] },
+          { name: 'Desierto Salvador Dalí',       latlng: [-22.62157, -67.66798], dir: 'right', labelOffset: [9, 22] },
+          { name: 'Laguna Verde',                 latlng: [-22.79534, -67.83611], dir: 'bottom' },
+          { name: 'Sol de Mañana',                latlng: [-22.45342, -67.76826], dir: 'left'   },
+          { name: 'Laguna Colorada',              latlng: [-22.20493, -67.75493], dir: 'left'   }
         ]
       },
-      day3: {
-        color: '#EAB308',
-        coords: [
-          [-22.5500, -67.5500], // Laguna Colorada
-          [-22.6800, -67.7000],
-          [-22.7500, -67.8500],
-          [-22.8200, -68.0000],
-          [-22.9000, -68.1800]  // Huayllajara / Candelaria area
+      {
+        key: 'day3',
+        label: 'Day 3',
+        color: '#f1c40f',
+        stops: [
+          { name: 'Laguna Colorada',              latlng: [-22.20493, -67.75493], dir: 'left'   },
+          { name: 'Rock Tree (Árbol de Piedra)',  latlng: [-22.04154, -67.89435], dir: 'left'   },
+          { name: "Laguna Q'ara",                 latlng: [-21.89979, -67.86765], dir: 'left'   },
+          { name: 'Julaca',                       latlng: [-20.84897, -67.59607], noLabel: true },
+          { name: 'Villa Candelaria',             latlng: [-20.63805, -67.60644], dir: 'left'   }
         ]
       },
-      day4: {
-        color: '#22C55E',
-        coords: [
-          [-22.9000, -68.1800], // Candelaria
-          [-22.9800, -68.3500],
-          [-20.9000, -67.6500],
-          [-20.6000, -67.3500],
-          [-20.4600, -66.8259]  // Uyuni
+      {
+        key: 'day4',
+        label: 'Day 4',
+        color: '#2ecc71',
+        stops: [
+          { name: 'Villa Candelaria',             latlng: [-20.63805, -67.60644], dir: 'left'   },
+          { name: 'Isla Incahuasi',               latlng: [-20.24203, -67.62524], dir: 'top'    },
+          { name: 'Uyuni',                        latlng: [-20.46182, -66.82160], dir: 'top'    }
         ]
-      }
-    };
-
-    // Draw polylines
-    const polylines = {};
-    Object.entries(routes).forEach(([key, r]) => {
-      polylines[key] = L.polyline(r.coords, {
-        color: r.color,
-        weight: 4,
-        opacity: 0.85,
-        lineJoin: 'round'
-      }).addTo(map);
-    });
-
-    // ── Helper: custom divIcon ─────────────────────────────
-    function makeIcon(cls, label) {
-      return L.divIcon({
-        className: '',
-        html: `<div class="custom-marker ${cls}">${label}</div>`,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
-      });
-    }
-
-    // ── Markers ────────────────────────────────────────────
-    const stops = [
-      {
-        latlng: [-21.4554, -65.7245],
-        icon: makeIcon('marker-start', 'S'),
-        day: 'Start',
-        name: 'Tupiza',
-        desc: 'Departure point — red canyon landscape'
-      },
-      {
-        latlng: [-22.0500, -66.7000],
-        icon: makeIcon('marker-overnight', '1'),
-        day: 'Night 1',
-        name: 'Quetena Chico',
-        desc: 'Basic refuge near the Eduardo Avaroa Reserve'
-      },
-      {
-        latlng: [-22.5500, -67.5500],
-        icon: makeIcon('marker-overnight', '2'),
-        day: 'Night 2',
-        name: 'Laguna Colorada Area',
-        desc: 'Red lake famous for flamingos at 4,300 m'
-      },
-      {
-        latlng: [-22.9000, -68.1800],
-        icon: makeIcon('marker-overnight', '3'),
-        day: 'Night 3',
-        name: 'Candelaria',
-        desc: 'Last overnight before the salt flat'
-      },
-      {
-        latlng: [-20.4600, -66.8259],
-        icon: makeIcon('marker-end', 'U'),
-        day: 'End',
-        name: 'Uyuni',
-        desc: 'Gateway to the world\'s largest salt flat'
       }
     ];
 
-    stops.forEach(s => {
-      L.marker(s.latlng, { icon: s.icon })
-        .addTo(map)
-        .bindPopup(
-          `<div class="popup-inner">
-            <div class="popup-day">${s.day}</div>
-            <div class="popup-name">${s.name}</div>
-            <div class="popup-desc">${s.desc}</div>
-          </div>`,
-          { className: 'map-popup', maxWidth: 220 }
-        );
+    // ── Draw polylines ─────────────────────────────────────
+    const polylines = {};
+    days.forEach(day => {
+      polylines[day.key] = L.polyline(
+        day.stops.map(s => s.latlng),
+        { color: day.color, weight: 4, opacity: 0.8, lineJoin: 'round' }
+      ).addTo(map);
     });
+
+    // ── Draw markers ───────────────────────────────────────
+    // Track drawn coords to avoid exact duplicate pins (shared stops between days)
+    const drawn = new Set();
+
+    days.forEach(day => {
+      day.stops.forEach((stop, idx) => {
+        const key = stop.latlng.join(',');
+        const isFirst = idx === 0;
+        const isLast  = idx === day.stops.length - 1;
+
+        // Show marker: always for first/last of each day; skip inner shared ones already drawn
+        const skipShared = drawn.has(key) && !isFirst && !isLast;
+        if (skipShared) return;
+        drawn.add(key);
+
+        const size = (isFirst && day.key === 'day1') || (isLast && day.key === 'day4') ? 14 : 10;
+        const border = size === 14 ? 3 : 2;
+
+        const icon = L.divIcon({
+          className: '',
+          html: `<div style="
+            width:${size}px; height:${size}px;
+            background:${day.color};
+            border:${border}px solid #fff;
+            border-radius:50%;
+            box-shadow:0 1px 4px rgba(0,0,0,.4);
+          "></div>`,
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2]
+        });
+
+        const marker = L.marker(stop.latlng, { icon })
+          .addTo(map)
+          .bindPopup(
+            `<div class="popup-inner">
+              <div class="popup-day" style="color:${day.color}">${day.label}</div>
+              <div class="popup-name">${stop.name}</div>
+            </div>`,
+            { className: 'map-popup', maxWidth: 200 }
+          );
+
+        if (!stop.noLabel) {
+          const defaultOffset = stop.dir === 'top'    ? [0, -(size / 2 + 4)] :
+                                stop.dir === 'bottom' ? [0,  (size / 2 + 4)] :
+                                stop.dir === 'left'   ? [-(size / 2 + 4), 0] :
+                                                       [size / 2 + 4, 0];
+          marker.bindTooltip(stop.name, {
+            permanent: true,
+            direction: stop.dir || 'right',
+            offset: stop.labelOffset || defaultOffset,
+            className: 'map-label'
+          });
+        }
+      });
+    });
+
+    // ── Overnight markers ─────────────────────────────────
+    // anchor: point of the icon [x,y] that sits on the latlng
+    // upper-left of dot  → [iconW + gap, iconH + gap]
+    // right of dot       → [-gap, iconH/2]
+    const overnights = [
+      { latlng: [-22.19730, -67.35393], label: 'Night 1 — Quetena Chico',   anchor: [28, 28] },
+      { latlng: [-22.20493, -67.75493], label: 'Night 2 — Laguna Colorada', anchor: [-6, 11] },
+      { latlng: [-20.63805, -67.60644], label: 'Night 3 — Villa Candelaria', anchor: [-6, 11] }
+    ];
+
+    const bedSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="white">
+      <path d="M22 9V7c0-1.1-.9-2-2-2H4C2.9 5 2 5.9 2 7v2H0v11h2v2h2v-2h16v2h2v-2h2V9h-2zM4 7h16v2H4V7zM2 18V11h20v7H2z"/>
+      <rect x="6" y="13" width="4" height="3" rx="1"/>
+      <rect x="14" y="13" width="4" height="3" rx="1"/>
+    </svg>`;
+
+    overnights.forEach(o => {
+      L.marker(o.latlng, {
+        icon: L.divIcon({
+          className: '',
+          html: `<div style="
+            width: 22px; height: 22px;
+            background: #34495e;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,.4);
+          ">${bedSvg}</div>`,
+          iconSize: [22, 22],
+          iconAnchor: o.anchor
+        })
+      })
+      .addTo(map)
+      .bindPopup(
+        `<div class="popup-inner">
+          <div class="popup-day" style="color:#34495e">🛏 Overnight</div>
+          <div class="popup-name">${o.label.split(' — ')[1]}</div>
+        </div>`,
+        { className: 'map-popup', maxWidth: 200 }
+      );
+    });
+
+    // ── Jeep 4x4 icon at Tupiza ───────────────────────────
+    const jeep4x4Svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="54" height="27">
+      <rect x="3" y="13" width="52" height="10" rx="1" fill="#2c3e50"/>
+      <rect x="7" y="4" width="41" height="11" rx="2" fill="#2c3e50"/>
+      <path d="M9 5 L7 13 L20 13 L20 5 Z" fill="#aed6f1" opacity="0.85"/>
+      <rect x="22" y="5" width="11" height="8" rx="1" fill="#aed6f1" opacity="0.85"/>
+      <rect x="35" y="5" width="11" height="8" rx="1" fill="#aed6f1" opacity="0.85"/>
+      <rect x="53" y="15" width="4" height="5" rx="1" fill="#1a252f"/>
+      <rect x="3" y="15" width="3" height="5" rx="1" fill="#1a252f"/>
+      <line x1="8" y1="4" x2="47" y2="4" stroke="#ecf0f1" stroke-width="1" opacity="0.5"/>
+      <circle cx="14" cy="23" r="6" fill="#1a252f" stroke="#ecf0f1" stroke-width="1.5"/>
+      <circle cx="14" cy="23" r="2.5" fill="#7f8c8d"/>
+      <circle cx="44" cy="23" r="6" fill="#1a252f" stroke="#ecf0f1" stroke-width="1.5"/>
+      <circle cx="44" cy="23" r="2.5" fill="#7f8c8d"/>
+    </svg>`;
+
+    L.marker([-21.44566, -65.71886], {
+      icon: L.divIcon({
+        className: '',
+        html: `<div style="transform:scaleX(-1)">${jeep4x4Svg}</div>`,
+        iconSize: [54, 30],
+        iconAnchor: [27, 38]   // centered horizontally, floats above the dot
+      })
+    })
+    .addTo(map)
+    .bindPopup(
+      `<div class="popup-inner">
+        <div class="popup-day" style="color:#2c3e50">🚙 Departure point</div>
+        <div class="popup-name">La Torre Tours — Tupiza</div>
+      </div>`,
+      { className: 'map-popup', maxWidth: 200 }
+    );
+
+    // ── Fit map to show all points ─────────────────────────
+    const allCoords = days.flatMap(d => d.stops.map(s => s.latlng));
+    map.fitBounds(L.latLngBounds(allCoords), { padding: [32, 48] });
 
     // ── Legend toggle ──────────────────────────────────────
     const legendItems = document.querySelectorAll('.legend-item[data-day]');
     legendItems.forEach(item => {
       item.addEventListener('click', () => {
-        const day = 'day' + item.dataset.day;
-        const pl = polylines[day];
+        const pl = polylines['day' + item.dataset.day];
         if (!pl) return;
         if (map.hasLayer(pl)) {
           map.removeLayer(pl);
