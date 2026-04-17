@@ -27,7 +27,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -38,6 +38,219 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Premium Private Tour Overrides -->
+  <style>
+    /* ── Variables ─────────────────────────────────────────── */
+    :root {
+      --color-primary:       #C9A84C;
+      --color-primary-dark:  #A8873A;
+      --color-accent:        #C9A84C;
+      --color-accent-hover:  #A8873A;
+      --color-dark:          #0E0E14;
+      --color-dark-lighter:  #1C1C28;
+      --color-bg:            #F7F4EF;
+      --color-white:         #FFFEF9;
+      --color-border:        #E2DAC8;
+      --color-text:          #1A1814;
+      --color-text-muted:    #7A7060;
+      --font-heading:        'EB Garamond', Georgia, serif;
+    }
+
+    /* ── Body & global ─────────────────────────────────────── */
+    body { background: var(--color-bg); }
+
+    /* ── Headings ──────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+
+    /* ── Header ────────────────────────────────────────────── */
+    .site-header {
+      background: #0E0E14;
+      border-bottom: 1px solid rgba(201,168,76,.2);
+    }
+    .site-header .logo-text { color: #C9A84C; }
+    .site-header .logo-sub  { color: rgba(201,168,76,.65); }
+    .site-header .logo img,
+    .footer-logo img {
+      filter: brightness(0) saturate(100%) invert(72%) sepia(38%) saturate(620%) hue-rotate(4deg) brightness(97%);
+    }
+    .nav-link { color: rgba(255,255,255,.75); }
+    .nav-link:hover { color: #C9A84C; }
+
+    /* ── Section nav ───────────────────────────────────────── */
+    .section-nav {
+      background: #16161F;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .section-nav-link { color: rgba(255,255,255,.6); }
+    .section-nav-link:hover,
+    .section-nav-link.active { color: #C9A84C; }
+    .section-nav-link.active::after { background: #C9A84C; }
+
+    /* ── Buttons ───────────────────────────────────────────── */
+    .btn-accent {
+      background: linear-gradient(135deg, #C9A84C 0%, #A8873A 100%);
+      color: #0E0E14;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: none;
+    }
+    .btn-accent:hover {
+      background: linear-gradient(135deg, #dbbf6a 0%, #C9A84C 100%);
+      color: #0E0E14;
+    }
+    .mobile-book-bar {
+      background: linear-gradient(135deg, #C9A84C 0%, #A8873A 100%);
+      color: #0E0E14 !important;
+      font-weight: 700;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero::before {
+      background: linear-gradient(
+        160deg,
+        rgba(14,14,20,.82) 0%,
+        rgba(14,14,20,.55) 50%,
+        rgba(168,135,58,.25) 100%
+      );
+    }
+    .hero-badge {
+      background: rgba(201,168,76,.15);
+      border-color: rgba(201,168,76,.4);
+      color: #C9A84C;
+    }
+    .hero h1 em { color: #C9A84C; font-style: normal; }
+
+    /* ── Trust badges ──────────────────────────────────────── */
+    .trust-badges { background: #16161F; }
+    .trust-badge  { color: rgba(255,255,255,.8); }
+    .trust-badge i { color: #C9A84C; }
+    .trust-badge-divider { background: rgba(201,168,76,.2); }
+
+    /* ── Section titles ────────────────────────────────────── */
+    .section-subtitle { color: var(--color-text-muted); }
+
+    /* ── Route section ─────────────────────────────────────── */
+    .route-section { background: var(--color-white); }
+    .route-card { border-color: var(--color-border); }
+    .route-logistics span { color: var(--color-text-muted); }
+
+    /* ── Pricing ───────────────────────────────────────────── */
+    .pricing-section { background: var(--color-white); }
+    .pricing-card {
+      border: 1px solid #E2DAC8;
+      background: var(--color-white);
+    }
+    .pricing-card--featured {
+      background: #0E0E14;
+      border-color: #C9A84C;
+      box-shadow: 0 8px 40px rgba(201,168,76,.18);
+    }
+    .pricing-card--featured h3,
+    .pricing-card--featured .price-amount,
+    .pricing-card--featured .price-unit,
+    .pricing-card--featured .price-capacity,
+    .pricing-card--featured .plan-highlight strong,
+    .pricing-card--featured .plan-highlight span { color: #F0E8D0; }
+    .pricing-card--featured .plan-highlight { border-color: rgba(201,168,76,.15); }
+    .popular-badge {
+      background: #C9A84C;
+      color: #0E0E14;
+      font-weight: 700;
+    }
+    .pricing-includes-bar {
+      background: #F0EBE0;
+      border-color: #D8CEBC;
+    }
+    .group-selector {
+      background: transparent;
+      border: none;
+      padding: 0;
+      gap: 12px;
+      max-width: 500px;
+    }
+    .group-btn {
+      border: 2px solid #C9A84C;
+      color: #A8873A;
+      font-size: 1.05rem;
+      padding: 16px 36px;
+      border-radius: 10px;
+      background: transparent;
+    }
+    .group-btn.active,
+    .group-btn:hover { background: #C9A84C; color: #0E0E14; border-color: #C9A84C; }
+    .pricing-card-head h3 { font-size: 1.6rem; }
+    .pricing-includes-label {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      color: #A8873A;
+      margin-bottom: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,.25);
+    }
+    .trust-bar span { color: var(--color-text-muted); }
+    .trust-bar span i { color: #C9A84C; }
+
+    /* ── Not included ──────────────────────────────────────── */
+    .gtk-section--exclusions { background: var(--color-bg); }
+    .gtk-ex-card { border-color: #E2DAC8; background: var(--color-white); }
+    .gtk-ex-icon { background: rgba(201,168,76,.1); color: #A8873A; }
+    .gtk-ex-badge { background: rgba(201,168,76,.12); color: #8A6E2C; border-color: rgba(201,168,76,.25); }
+    .gtk-ex-badge--soft { background: #F0EBE0; color: #8A6E2C; border-color: #E2DAC8; }
+
+    /* ── What to bring ─────────────────────────────────────── */
+    .gtk-section--bring { background: var(--color-white); }
+    .gtk-bring-item { border-color: #E2DAC8; background: var(--color-bg); }
+    .gtk-bring-icon { background: rgba(201,168,76,.1); color: #A8873A; }
+
+    /* ── Gallery ───────────────────────────────────────────── */
+    .gallery-section { background: var(--color-bg); }
+
+    /* ── Testimonials ──────────────────────────────────────── */
+    .testimonials-section { background: var(--color-white); }
+    .testimonial-card { border-color: #E2DAC8; }
+    .testimonial-stars i { color: #C9A84C; }
+    .author-avatar { background: linear-gradient(135deg, #C9A84C, #A8873A); color: #0E0E14; }
+
+    /* ── FAQ ───────────────────────────────────────────────── */
+    .faq-section { background: var(--color-bg); }
+    .faq-item { border-color: #E2DAC8; }
+    .faq-icon { color: #C9A84C; }
+    .faq-item--open .faq-question { color: #A8873A; }
+
+    /* ── Final CTA ─────────────────────────────────────────── */
+    .final-cta { background: linear-gradient(135deg, #0E0E14 0%, #1C1820 100%); }
+    .final-cta h2 { color: #C9A84C; }
+    .final-cta p  { color: rgba(255,255,255,.65); }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .site-footer { background: #090910; border-top: 1px solid rgba(201,168,76,.15); }
+    .site-footer a { color: rgba(201,168,76,.7); }
+    .site-footer a:hover { color: #C9A84C; }
+
+    /* ── Itinerary day circles ─────────────────────────────── */
+    .itinerary-day:nth-child(1) .day-circle,
+    .itinerary-day:nth-child(2) .day-circle,
+    .itinerary-day:nth-child(3) .day-circle,
+    .itinerary-day:nth-child(4) .day-circle {
+      background: rgba(201,168,76,.1);
+      color: #A8873A;
+      box-shadow: 0 0 0 4px rgba(201,168,76,.06);
+      border: 2px solid rgba(201,168,76,.25);
+    }
+
+    /* ── WhatsApp float ────────────────────────────────────── */
+    .whatsapp-float { box-shadow: 0 4px 20px rgba(201,168,76,.25); }
+  </style>
 
   <!-- Schema: TouristTrip -->
   <script type="application/ld+json">
@@ -264,7 +477,7 @@
              id="heroCta"
              target="_blank" rel="noopener noreferrer">
             <i class="fas fa-calendar-plus" aria-hidden="true"></i>
-            Book Now — From $297
+            BOOK PRIVATE EXPERIENCE
           </a>
         </div>
       </div>
@@ -327,24 +540,24 @@
           <a href="#gallery"   class="section-nav-link" data-section="gallery">Gallery</a>
           <a href="#prices"    class="section-nav-link" data-section="prices">Prices</a>
           <a href="#faq"       class="section-nav-link" data-section="faq">FAQ</a>
-          <a href="https://book.latorretours-tupiza.com/4d-s"
+          <a href="https://book.latorretours-tupiza.com/4d-p"
              class="section-nav-book btn btn-accent"
              id="navBookBtn"
              target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-calendar-plus" aria-hidden="true"></i> <span id="navBookLabel">Book Shared Tour</span>
+            <i class="fas fa-calendar-plus" aria-hidden="true"></i> <span id="navBookLabel">BOOK PRIVATE EXPERIENCE</span>
           </a>
         </div>
       </div>
     </nav>
 
     <!-- Mobile fixed Book bar -->
-    <a href="https://book.latorretours-tupiza.com/4d-s"
+    <a href="https://book.latorretours-tupiza.com/4d-p"
        class="mobile-book-bar"
        id="mobileBookBtn"
        target="_blank" rel="noopener noreferrer"
-       aria-label="Book Now — From $297">
+       aria-label="Book Private Tour Now">
       <i class="fas fa-calendar-plus" aria-hidden="true"></i>
-      <span id="mobileBookLabel">Book Shared Tour Now</span>
+      <span id="mobileBookLabel">BOOK PRIVATE EXPERIENCE</span>
     </a>
 
     <!-- ═══════════════════════════════════════════
@@ -352,7 +565,7 @@
     ═══════════════════════════════════════════ -->
     <section id="route" class="route-section">
       <div class="container">
-        <h2>Your Route</h2>
+        <h2>Your Experience</h2>
         <p class="section-subtitle">4 days across the most spectacular landscapes in Bolivia</p>
         <div class="route-logistics">
           <span><i class="fas fa-clock" aria-hidden="true"></i> Meeting point: <strong>07:30am in Tupiza</strong></span>
@@ -586,108 +799,232 @@
         <h2>Prices &amp; Packages</h2>
         <p class="section-subtitle">Choose the experience that's right for you</p>
 
-        <!-- SHARED PANEL -->
-        <div class="pricing-panel active" id="panel-shared">
-          <p class="pricing-intro">A shared tour is the best option if you are traveling alone or want to meet other travelers. We group you with other adventurers, so you don't need to worry about filling the vehicle.</p>
+        <!-- PRIVATE PANEL -->
+        <div class="pricing-panel active" id="panel-private">
+          <p class="pricing-intro">A private tour is the best option if you want to travel with more comfort and flexibility, without following standard schedules for stops and photos.</p>
 
-          <!-- Base features — all shared plans -->
+          <div class="group-selector" role="tablist" aria-label="Select group size">
+            <button class="group-btn active" data-group="2" role="tab" aria-selected="true">2 People</button>
+            <button class="group-btn" data-group="3" role="tab" aria-selected="false">3 People</button>
+            <button class="group-btn" data-group="4" role="tab" aria-selected="false">4 People</button>
+          </div>
+
+          <!-- Base features — all private plans -->
           <div class="pricing-includes-bar">
             <span class="pricing-includes-label">All plans include</span>
-            <span><i class="fas fa-truck-monster" aria-hidden="true"></i> 4×4 transport</span>
+            <span><i class="fas fa-truck-monster" aria-hidden="true"></i> Toyota Land Cruiser</span>
+            <span><i class="fas fa-calendar-check" aria-hidden="true"></i> Guaranteed departure</span>
             <span><i class="fas fa-wind" aria-hidden="true"></i> Oxygen</span>
-            <span><i class="fas fa-user-tie" aria-hidden="true"></i> Driver-guide &amp; cook</span>
+            <span><i class="fas fa-user-tie" aria-hidden="true"></i> Guide &amp; cook</span>
             <span><i class="fas fa-utensils" aria-hidden="true"></i> All meals</span>
-            <span><i class="fas fa-moon" aria-hidden="true"></i> 3 nights</span>
             <span><i class="fas fa-thermometer-half" aria-hidden="true"></i> Sleeping bags</span>
+            <span><i class="fas fa-ticket-alt" aria-hidden="true"></i> Pickup</span>
+            <span><i class="fas fa-ticket-alt" aria-hidden="true"></i> Entrance fees</span>
+            <span><i class="fas fa-restroom" aria-hidden="true"></i> Public bathrooms</span>
+            <span><i class="fas fa-shower" aria-hidden="true"></i> Hot shower</span>
+            <span><i class="fas fa-wifi" aria-hidden="true"></i> WiFi</span>
           </div>
 
-          <div class="pricing-cards pricing-cards--three" id="shared-cards">
+          <div id="private-groups-container">
 
-            <!-- Comfort+ -->
-            <div class="pricing-card">
-              <div class="pricing-card-head">
-                <h3>Comfort <span class="plan-plus">+</span></h3>
-                <div class="price-display">
-                  <span class="price-amount" data-plan-key="shared_comfort_plus">$447</span>
-                  <span class="price-unit">USD / person</span>
+            <!-- Group 2 -->
+            <div class="private-group active" data-group-panel="2">
+              <div class="pricing-cards pricing-cards--three">
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Deluxe</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_2_deluxe">$1,450</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-hotel" aria-hidden="true"></i>
+                      <div><strong>Premium hotels</strong><span>Mallku Cueva · Tayka Desierto · Palacio de Sal</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Hot shower included</span></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="price-capacity"><i class="fas fa-user-friends" aria-hidden="true"></i> Max 4 tourists per car</div>
-              </div>
-              <div class="plan-highlights">
-                <div class="plan-highlight plan-highlight--yes">
-                  <i class="fas fa-door-open" aria-hidden="true"></i>
-                  <div><strong>Private room</strong><span>Twin / double · solo travellers add $50</span></div>
+                <div class="pricing-card pricing-card--featured">
+                  <div class="popular-badge">Most Booked</div>
+                  <div class="pricing-card-head">
+                    <h3>Comfort</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_2_comfort">$800</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Private bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower in the room</strong></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="plan-highlight plan-highlight--yes">
-                  <i class="fas fa-shower" aria-hidden="true"></i>
-                  <div><strong>Hot shower in the room</strong></div>
-                </div>
-                <div class="plan-highlight plan-highlight--yes">
-                  <i class="fas fa-ticket-alt" aria-hidden="true"></i>
-                  <div><strong>Hotel pickup</strong></div>
-                </div>
-                <div class="plan-highlight plan-highlight--yes plan-highlight--exclusive">
-                  <i class="fas fa-star" aria-hidden="true"></i>
-                  <div><strong>Smaller group</strong><span>Max 4 tourists — more space &amp; privacy</span></div>
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Basic</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_2_basic">$700</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight">
+                      <i class="fas fa-bed" aria-hidden="true"></i>
+                      <div><strong>Twin / double room</strong><span>Shared bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--no">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower</strong><span>Shared bathroom — if available</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Comfort -->
-            <div class="pricing-card pricing-card--featured">
-              <div class="popular-badge">Most Booked</div>
-              <div class="pricing-card-head">
-                <h3>Comfort</h3>
-                <div class="price-display">
-                  <span class="price-amount" data-plan-key="shared_comfort">$397</span>
-                  <span class="price-unit">USD / person</span>
+            <!-- Group 3 -->
+            <div class="private-group" data-group-panel="3" hidden>
+              <div class="pricing-cards pricing-cards--three">
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Deluxe</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_3_deluxe">$1,150</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-hotel" aria-hidden="true"></i>
+                      <div><strong>Premium hotels</strong><span>Mallku Cueva · Tayka Desierto · Palacio de Sal</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Hot shower included</span></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="price-capacity"><i class="fas fa-user-friends" aria-hidden="true"></i> Max 5 tourists per car</div>
-              </div>
-              <div class="plan-highlights">
-                <div class="plan-highlight plan-highlight--yes">
-                  <i class="fas fa-door-open" aria-hidden="true"></i>
-                  <div><strong>Private room</strong><span>Twin / double · solo travellers add $50</span></div>
+                <div class="pricing-card pricing-card--featured">
+                  <div class="popular-badge">Most Booked</div>
+                  <div class="pricing-card-head">
+                    <h3>Comfort</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_3_comfort">$600</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Private bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower in the room</strong></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="plan-highlight plan-highlight--yes">
-                  <i class="fas fa-shower" aria-hidden="true"></i>
-                  <div><strong>Hot shower in the room</strong></div>
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Basic</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_3_basic">$500</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight">
+                      <i class="fas fa-bed" aria-hidden="true"></i>
+                      <div><strong>Twin / triple room</strong><span>Shared bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--no">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower</strong><span>Shared bathroom — if available</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Basic -->
-            <div class="pricing-card">
-              <div class="pricing-card-head">
-                <h3>Basic</h3>
-                <div class="price-display">
-                  <span class="price-amount" data-plan-key="shared_basic">$297</span>
-                  <span class="price-unit">USD / person</span>
+            <!-- Group 4 -->
+            <div class="private-group" data-group-panel="4" hidden>
+              <div class="pricing-cards pricing-cards--three">
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Deluxe</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_4_deluxe">$1,100</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-hotel" aria-hidden="true"></i>
+                      <div><strong>Premium hotels</strong><span>Mallku Cueva · Tayka Desierto · Palacio de Sal</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Hot shower included</span></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="price-capacity"><i class="fas fa-user-friends" aria-hidden="true"></i> Max 5 tourists per car</div>
-              </div>
-              <div class="plan-highlights">
-                <div class="plan-highlight">
-                  <i class="fas fa-bed" aria-hidden="true"></i>
-                  <div><strong>5-bed dorm</strong><span>Shared bathroom</span></div>
+                <div class="pricing-card pricing-card--featured">
+                  <div class="popular-badge">Most Booked</div>
+                  <div class="pricing-card-head">
+                    <h3>Comfort</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_4_comfort">$500</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-door-open" aria-hidden="true"></i>
+                      <div><strong>Private room</strong><span>Private bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--yes">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower in the room</strong></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="plan-highlight plan-highlight--no">
-                  <i class="fas fa-shower" aria-hidden="true"></i>
-                  <div><strong>No hot shower</strong><span>Extra when available</span></div>
-                </div>
-                <div class="plan-highlight plan-highlight--no">
-                  <i class="fas fa-concierge-bell" aria-hidden="true"></i>
-                  <div><strong>No extras included</strong><span>Just the essentials</span></div>
+                <div class="pricing-card">
+                  <div class="pricing-card-head">
+                    <h3>Basic</h3>
+                    <div class="price-display">
+                      <span class="price-amount" data-plan-key="private_4_basic">$400</span>
+                      <span class="price-unit">USD / person</span>
+                    </div>
+                  </div>
+                  <div class="plan-highlights">
+                    <div class="plan-highlight">
+                      <i class="fas fa-bed" aria-hidden="true"></i>
+                      <div><strong>Quadruple room</strong><span>Shared bathroom</span></div>
+                    </div>
+                    <div class="plan-highlight plan-highlight--no">
+                      <i class="fas fa-shower" aria-hidden="true"></i>
+                      <div><strong>Hot shower</strong><span>Shared bathroom — if available</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-          </div>
+          </div><!-- /#private-groups-container -->
 
           <div class="pricing-cta-wrap">
-            <a href="https://book.latorretours-tupiza.com/4d-s"
+            <a href="https://book.latorretours-tupiza.com/4d-p"
                class="btn btn-accent btn-large" target="_blank" rel="noopener noreferrer">
-              <i class="fas fa-calendar-plus" aria-hidden="true"></i> Book Shared Tour Now
+              <i class="fas fa-calendar-plus" aria-hidden="true"></i> BOOK PRIVATE EXPERIENCE
             </a>
           </div>
           <div class="trust-bar">
@@ -695,19 +1032,18 @@
             <span><i class="fas fa-tag" aria-hidden="true"></i> Best Price Guaranteed</span>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════
-         CROSSSELL — PRIVATE
+         CROSSSELL — SHARED
     ═══════════════════════════════════════════ -->
     <section class="crosssell">
       <div class="container">
-        <h2>Want the route all to yourself?</h2>
-        <p>Upgrade to a private tour — your own 4×4, your pace, your stops. No strangers, no compromises. The same iconic landscapes, entirely on your terms.</p>
-        <a href="index_private.html#prices" class="btn-gold">
-          <i class="fas fa-crown" aria-hidden="true"></i> Explore Private Prices
+        <h2>Travelling solo or watching your budget?</h2>
+        <p>Our shared tours cover the exact same route with a small group of like-minded adventurers. Same landscapes, same memories — at a friendlier price.</p>
+        <a href="index.html#prices" class="btn-orange">
+          <i class="fas fa-users" aria-hidden="true"></i> Explore Shared Prices
         </a>
       </div>
     </section>
@@ -723,38 +1059,10 @@
         <div class="gtk-excluded-row">
 
             <div class="gtk-ex-card">
-              <div class="gtk-ex-icon"><i class="fas fa-ticket-alt" aria-hidden="true"></i></div>
-              <strong>Entrance fees</strong>
-              <span>~Bs 221 per person across all protected areas. Cash only (Bolivian pesos) — no ATMs on the route. Withdraw before leaving Tupiza.</span>
-              <div class="gtk-ex-badge">$32 / person</div>
-            </div>
-
-            <div class="gtk-ex-card">
               <div class="gtk-ex-icon"><i class="fas fa-language" aria-hidden="true"></i></div>
               <strong>English-speaking guide</strong>
               <span>Your driver-guide speaks Spanish. English narration is available for the whole group at a flat fee — not per person.</span>
               <div class="gtk-ex-badge">$260 / group</div>
-            </div>
-
-            <div class="gtk-ex-card">
-              <div class="gtk-ex-icon"><i class="fas fa-restroom" aria-hidden="true"></i></div>
-              <strong>Public bathrooms</strong>
-              <span>Facilities are scarce along the route. Use every available stop, carry toilet paper, and keep Bs 5–10 in coins for paid toilets.</span>
-              <div class="gtk-ex-badge">~$1 / use</div>
-            </div>
-
-            <div class="gtk-ex-card">
-              <div class="gtk-ex-icon"><i class="fas fa-wifi" aria-hidden="true"></i></div>
-              <strong>WiFi &amp; mobile signal</strong>
-              <span>No mobile coverage for most of the route. A few lodges offer paid WiFi (≈ Bs 20). Download offline maps before you go.</span>
-              <div class="gtk-ex-badge gtk-ex-badge--soft">Mostly offline</div>
-            </div>
-
-            <div class="gtk-ex-card">
-              <div class="gtk-ex-icon"><i class="fas fa-shower" aria-hidden="true"></i></div>
-              <strong>Hot shower</strong>
-              <span>Included in Comfort &amp; Deluxe. On Basic, some lodges charge extra — availability varies.</span>
-              <div class="gtk-ex-badge gtk-ex-badge--soft">Basic only</div>
             </div>
 
             <div class="gtk-ex-card">
@@ -1101,11 +1409,11 @@
         <div class="final-cta-buttons">
           <a href="https://book.latorretours-tupiza.com/4d-s"
              class="btn btn-accent btn-large" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-calendar-plus" aria-hidden="true"></i> Book Now — From $297
+            <i class="fas fa-calendar-plus" aria-hidden="true"></i> BOOK PRIVATE EXPERIENCE
           </a>
           <a href="https://api.whatsapp.com/send/?phone=59176751355&text=Hi%21%20I%27m%20interested%20in%20the%204-Day%20Trip%20from%20Tupiza%20to%20Uyuni.%20Could%20you%20help%20me%20with%20more%20information%3F"
              class="btn btn-whatsapp btn-large" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> CHAT ON WHATSAPP
           </a>
         </div>
       </div>

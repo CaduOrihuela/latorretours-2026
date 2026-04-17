@@ -1875,6 +1875,59 @@ h3 {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   CROSSSELL STRIP
+   ═══════════════════════════════════════════════════════════ */
+.crosssell {
+  background: var(--color-dark);
+  padding: 56px 0;
+  text-align: center;
+}
+.crosssell h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #fff;
+  margin-bottom: 12px;
+}
+.crosssell p {
+  color: rgba(255,255,255,.65);
+  font-size: 1rem;
+  max-width: 520px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #C9A84C 0%, #A8873A 100%);
+  color: #0E0E14;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.btn-gold:hover { opacity: 0.88; }
+.btn-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #E76F51 0%, #D55A3E 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.btn-orange:hover { opacity: 0.88; }
+
+/* ═══════════════════════════════════════════════════════════
    FAQ
    ═══════════════════════════════════════════════════════════ */
 .faq-section {
